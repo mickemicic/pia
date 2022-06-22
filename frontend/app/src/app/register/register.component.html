@@ -1,0 +1,104 @@
+<app-header></app-header>
+
+<form>
+    <table>
+        <tr>
+            <td>
+                Odgovorno lice:
+            </td>
+            <td>
+                <input type="text" id="odgLice"  name="odgLice" [(ngModel)]="odgLice" required minlength="4" class="form-control" id="odgLice">
+            </td>
+        </tr>
+        <tr>
+            <td>
+                Korisničko ime:
+            </td>
+            <td>
+                <input type="text" name="username" [(ngModel)]="username">
+            </td>
+        </tr>
+        <tr>
+            <td>
+                Lozinka:
+            </td>
+            <td>
+                <input type="password" name="password" [(ngModel)]="password">
+            </td>
+        </tr>
+        <tr>
+            <td>
+                Potvrda lozinke:
+            </td>
+            <td>
+                <input type="password" name="passwordConfirm" [(ngModel)]="passwordConfirm">
+            </td>
+        </tr>
+        <tr>
+            <td>
+                Telefon:
+            </td>
+            <td>
+                <input type="tel" name="phone" [(ngModel)]="phone">
+            </td>
+        </tr>
+        <tr>
+            <td>
+                Adresa e-pošte:
+            </td>
+            <td>
+                <input type="email" name="email" [(ngModel)]="email">
+            </td>
+        </tr>
+        <tr>
+            <td>
+                Naziv preduzeća:
+            </td>
+            <td>
+                <input type="text" name="title" [(ngModel)]="title">
+            </td>
+        </tr>
+        <tr>
+            <td>
+                Adresa:
+            </td>
+            <td>
+                <input type="text" name="address" [(ngModel)]="address">
+            </td>
+        </tr>
+        <tr>
+            <td>
+                PIB:
+            </td>
+            <td>
+                <input type="number" name="pib" [(ngModel)]="pib">
+            </td>
+        </tr>
+        <tr>
+            <td>
+                Matični broj:
+            </td>
+            <td>
+                <input type="number" name="matBr" [(ngModel)]="matBr">
+            </td>
+        </tr>
+        <tr>
+            <td colspan="2">
+                <button (click)="register()">Registruj se</button>
+            </td>
+        </tr>
+    </table>
+</form>
+<form class="example-form">
+    <mat-form-field class="example-full-width" appearance="fill">
+        <mat-label>Адреса е-поште</mat-label>
+        <input type="email" matInput [formControl]="emailFormControl" [errorStateMatcher]="matcher"
+            placeholder="Нпр. adresa@posta.rs" [(ngModel)]="email">
+        <mat-error *ngIf="emailFormControl.hasError('email') && !emailFormControl.hasError('required')">
+            Молимо унесите коректну адресу е-поште
+        </mat-error>
+        <mat-error *ngIf="emailFormControl.hasError('required')">
+            Е-пошта је <strong>обавезно</strong> поље
+        </mat-error>
+    </mat-form-field>
+  </form>
