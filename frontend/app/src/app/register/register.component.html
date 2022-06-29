@@ -1,104 +1,167 @@
 <app-header></app-header>
-
-<form>
-    <table>
-        <tr>
-            <td>
-                Odgovorno lice:
-            </td>
-            <td>
-                <input type="text" id="odgLice"  name="odgLice" [(ngModel)]="odgLice" required minlength="4" class="form-control" id="odgLice">
-            </td>
-        </tr>
-        <tr>
-            <td>
-                Korisničko ime:
-            </td>
-            <td>
-                <input type="text" name="username" [(ngModel)]="username">
-            </td>
-        </tr>
-        <tr>
-            <td>
-                Lozinka:
-            </td>
-            <td>
-                <input type="password" name="password" [(ngModel)]="password">
-            </td>
-        </tr>
-        <tr>
-            <td>
-                Potvrda lozinke:
-            </td>
-            <td>
-                <input type="password" name="passwordConfirm" [(ngModel)]="passwordConfirm">
-            </td>
-        </tr>
-        <tr>
-            <td>
-                Telefon:
-            </td>
-            <td>
-                <input type="tel" name="phone" [(ngModel)]="phone">
-            </td>
-        </tr>
-        <tr>
-            <td>
-                Adresa e-pošte:
-            </td>
-            <td>
-                <input type="email" name="email" [(ngModel)]="email">
-            </td>
-        </tr>
-        <tr>
-            <td>
-                Naziv preduzeća:
-            </td>
-            <td>
-                <input type="text" name="title" [(ngModel)]="title">
-            </td>
-        </tr>
-        <tr>
-            <td>
-                Adresa:
-            </td>
-            <td>
-                <input type="text" name="address" [(ngModel)]="address">
-            </td>
-        </tr>
-        <tr>
-            <td>
-                PIB:
-            </td>
-            <td>
-                <input type="number" name="pib" [(ngModel)]="pib">
-            </td>
-        </tr>
-        <tr>
-            <td>
-                Matični broj:
-            </td>
-            <td>
-                <input type="number" name="matBr" [(ngModel)]="matBr">
-            </td>
-        </tr>
-        <tr>
-            <td colspan="2">
-                <button (click)="register()">Registruj se</button>
-            </td>
-        </tr>
-    </table>
-</form>
-<form class="example-form">
-    <mat-form-field class="example-full-width" appearance="fill">
-        <mat-label>Адреса е-поште</mat-label>
-        <input type="email" matInput [formControl]="emailFormControl" [errorStateMatcher]="matcher"
-            placeholder="Нпр. adresa@posta.rs" [(ngModel)]="email">
-        <mat-error *ngIf="emailFormControl.hasError('email') && !emailFormControl.hasError('required')">
-            Молимо унесите коректну адресу е-поште
-        </mat-error>
-        <mat-error *ngIf="emailFormControl.hasError('required')">
-            Е-пошта је <strong>обавезно</strong> поље
-        </mat-error>
-    </mat-form-field>
-  </form>
+<body style="text-align: center;">
+    <form class="example-form">
+        <table class="example-full-width" cellspacing="0">
+            <tr>
+                <td colspan="2">
+                    <mat-form-field class="example-full-width" appearance="fill">
+                        <mat-label>Одговорно лице</mat-label>
+                        <input matInput name="name" placeholder="Нпр. Петар Петровић" [(ngModel)]="odgLice" [formControl]="nameFormControl" [errorStateMatcher]="matcher">
+                        <mat-error *ngIf="nameFormControl.hasError('pattern') && !nameFormControl.hasError('required')">
+                            Молимо унесите коректно име и презиме
+                        </mat-error>
+                        <mat-error *ngIf="nameFormControl.hasError('required')">
+                            Одговорно лице је <strong>обавезно</strong> поље.
+                        </mat-error>
+                    </mat-form-field>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2">
+                    <mat-form-field class="example-full-width" appearance="fill">
+                        <mat-label>Корисничко име</mat-label>
+                        <input matInput name="username" placeholder="Нпр. петар12" [(ngModel)]="username" [formControl]="usernameFormControl" [errorStateMatcher]="matcher">
+                        <mat-error *ngIf="usernameFormControl.hasError('required')">
+                            Корисничко име је <strong>обавезно</strong> поље.
+                        </mat-error>
+                    </mat-form-field>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <mat-form-field class="example-full-width" appearance="fill">
+                        <mat-label>Лозинка</mat-label>
+                        <input matInput name="password" [type]="hide ? 'password' : 'text'" [(ngModel)]="password" [formControl]="passFormControl" [errorStateMatcher]="matcher">
+                        <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+                            <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+                        </button>
+                        <mat-error *ngIf="passFormControl.hasError('pattern') && !passFormControl.hasError('required')">
+                            Лозинка мора бити у назначеном формату.
+                        </mat-error>
+                        <mat-error *ngIf="passFormControl.hasError('required')">
+                            Лозинка je <strong>обавезно</strong> поље.
+                        </mat-error>
+                        <mat-hint>Лозинка мора имати између 8 и 12 карактера, минимум једно велико слово, један број и један специјалан карактер. Мора почињати словом.</mat-hint>
+                    </mat-form-field>
+                </td>
+                <td>
+                    <mat-form-field class="example-full-width" appearance="fill">
+                        <mat-label>Потврда лозинке</mat-label>
+                        <input matInput name="passwordConfirm" [type]="hideC ? 'password' : 'text'" [(ngModel)]="passwordConfirm" [formControl]="passCFormControl" [errorStateMatcher]="matcher" >
+                        <button mat-icon-button matSuffix (click)="hideC = !hideC" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+                            <mat-icon>{{hideC ? 'visibility_off' : 'visibility'}}</mat-icon>
+                        </button>
+                        <mat-error *ngIf="passFormControl.hasError('required')">
+                            Потврда лозинке je <strong>обавезно</strong> поље.
+                        </mat-error>
+                    </mat-form-field>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2" style="padding-top: 9%;">
+                    <mat-form-field class="example-full-width" appearance="fill">
+                        <mat-label>Адреса е-поште</mat-label>
+                        <input type="email" matInput [formControl]="emailFormControl" [errorStateMatcher]="matcher"
+                            placeholder="Нпр. adresa@posta.rs" [(ngModel)]="email" name="email" id="email">
+                        <mat-error *ngIf="emailFormControl.hasError('email') && !emailFormControl.hasError('required')">
+                            Молимо унесите коректну адресу е-поште
+                        </mat-error>
+                        <mat-error *ngIf="emailFormControl.hasError('required')">
+                            Е-пошта је <strong>обавезно</strong> поље.
+                        </mat-error>
+                    </mat-form-field>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <mat-form-field class="example-full-width" appearance="fill">
+                        <mat-label>Назив предузећа</mat-label>
+                        <input matInput [(ngModel)]="title" name="title" [formControl]="titleFormControl" [errorStateMatcher]="matcher">
+                        <mat-error>
+                            Назив предузећа је <strong>обавезно</strong> поље.
+                        </mat-error>
+                    </mat-form-field>
+                </td>
+                <td>
+                    <mat-form-field class="example-full-width" appearance="fill">
+                        <mat-label>Адреса предузећа</mat-label>
+                        <input matInput [(ngModel)]="address" name="address" [formControl]="addressFormControl" [errorStateMatcher]="matcher">
+                        <mat-error>
+                            Адреса предузећа је <strong>обавезно</strong> поље.
+                        </mat-error>
+                    </mat-form-field>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2">
+                    <mat-form-field class="example-full-width" appearance="fill">
+                        <mat-label>Порески идентификациони број</mat-label>
+                        <input matInput [(ngModel)]="pib" name="pib" [formControl]="pibFormControl" [errorStateMatcher]="matcher" value="0">
+                        <mat-error>
+                            ПИБ је <strong>обавезно</strong> поље.
+                        </mat-error>
+                    </mat-form-field>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <mat-form-field class="example-full-width" appearance="fill">
+                        <mat-label>Матични број</mat-label>
+                        <input matInput [(ngModel)]="matBr" name="matBr" [formControl]="matBrFormControl" [errorStateMatcher]="matcher">
+                        <mat-error>
+                            Матични број је <strong>обавезно</strong> поље.
+                        </mat-error>
+                    </mat-form-field>
+                </td>
+                <td>
+                    <mat-form-field class="example-full-width" appearance="fill">
+                        <mat-label>Контакт телефон</mat-label>
+                        <input matInput [(ngModel)]="phone" name="phone" [formControl]="phoneFormControl" [errorStateMatcher]="matcher">
+                        <mat-hint>
+                            Унети у формату +381ХХХХХХХХХ.
+                        </mat-hint>
+                        <mat-error *ngIf="phoneFormControl.hasError('required')"> 
+                            Контакт телефон је <strong>обавезно</strong> поље.
+                        </mat-error>
+                        <mat-error *ngIf="phoneFormControl.hasError('pattern') && !phoneFormControl.hasError('required')"> 
+                            Телефон мора бити у одговарајућем формату.
+                        </mat-error>
+                        
+                    </mat-form-field>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <mat-form-field class="example-full-width" appearance="fill">
+                        <mat-label>Лого предузећа</mat-label>
+                        <input matInput disabled="true" id="logo" name="logo" value="" [(ngModel)]="path">
+                    </mat-form-field>
+                </td>
+                <td>
+                    <button color="primary" mat-raised-button onclick="document.getElementById('getFile').click()" for="getFile">Додај</button>
+                    <input type='file' id="getFile" style="display:none">        
+                </td>
+            </tr>
+            <tr>
+                <td  colspan="2">
+                    <hr>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2" align="center" style="padding-top: 5%;">
+                    <button color="primary" mat-raised-button (click)="register()" [disabled]="">
+                        РЕГИСТРУЈ СЕ
+                    </button>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <mat-error>{{message}}</mat-error>
+                    <mat-error>
+                        {{messageP}}
+                    </mat-error>
+                </td>
+            </tr>
+        </table>
+    </form>
+</body>

@@ -2,7 +2,7 @@ export class Business{
     username: string;
     password: string;
     type: number;
-    public odgLice: string;
+    odgLice: string;
     phone: number;
     email: string;
     title: string;

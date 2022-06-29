@@ -1,27 +1,48 @@
-<table>
-    <tr>
-        <td>Username:</td>
-        <td>
-            <input type='text' name="username" [(ngModel)]="username">
-        </td>
-    </tr>
-    <tr>
-        <td>Password:</td>
-        <td>
-            <input type='text' name="password" [(ngModel)]="password">
-        </td>
-    </tr>
-    <tr>
-        <td colspan="2">
-            <button (click)="login()">Login</button>
-        </td>
-    </tr>
-</table>
+<app-header></app-header>
 
-<span class="error">
-    {{message}}
-</span>
 
-<hr/>
+<body style="text-align: center;">
+    <form class="example-form">
+        <table class="example-full-width" cellSpacing="0">
+            <tr>
+                <td>
+                    <mat-form-field class="example-full-width" appearance="fill">
+                        <mat-label>Корисничко име:</mat-label>
+                        <input matInput type='text' name="username" [(ngModel)]="username" [formControl]="usernameFormControl" [errorStateMatcher]="matcher">
+                        <mat-error *ngIf="usernameFormControl.hasError('required')">
+                            Корисничко име је <strong>обавезно</strong> поље.
+                        </mat-error>
+                    </mat-form-field>   
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <mat-form-field class="example-full-width" appearance="fill">
+                        <mat-label>Лозинка</mat-label>
+                        <input matInput name="password" [type]="hide ? 'password' : 'text'" [(ngModel)]="password" [formControl]="passFormControl" [errorStateMatcher]="matcher">
+                        <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+                            <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+                        </button>
+                        <mat-error *ngIf="passFormControl.hasError('required')">
+                            Лозинка je <strong>обавезно</strong> поље.
+                        </mat-error>
+                    </mat-form-field>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <button color="primary" mat-raised-button (click)="login()">Пријава</button>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <mat-error>{{message}}</mat-error>
+                </td>
+            </tr>
+        </table>
+    </form>
 
-Register <a routerLink="register">here.</a>
+    <hr/>
+
+    Немате налог? Региструјте се  <a routerLink="register">овде.</a>
+</body>

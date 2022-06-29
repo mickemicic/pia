@@ -1,4 +1,37 @@
-<mat-sidenav-container>
+<p>
+  <mat-toolbar color="primary">
+    <button mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon"
+      [matMenuTriggerFor]="menu">
+      <mat-icon>menu</mat-icon>
+    </button>
+    <span>Република Србија - Фискализација</span>
+    <span class="example-spacer"></span>
+    <mat-menu #menu="matMenu">
+      <button mat-menu-item onclick="location.href = 'http://localhost:4200/'">
+        <span>Пријава</span>
+      </button>
+      <button mat-menu-item onclick="location.href = 'http://localhost:4200/register'">
+        <span>Регистрација</span>
+      </button>
+      <button mat-menu-item>
+        <span>Заврши рад</span>
+      </button>
+    </mat-menu>
+  </mat-toolbar>
+</p>
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- <mat-sidenav-container>
     <mat-sidenav-content>
       <mat-toolbar color="primary">
         <div fxHide.gt-xs>
@@ -12,7 +45,7 @@
           </a>
         </div>
         <div fxFlex fxLayout fxLayoutAlign="flex-end"  fxHide.xs>
-          <ul fxLayout fxLayoutGap="20px" class="navigation-items">
+          <ul fxLayout fxLayoutGap="30px" class="navigation-items">
               <li>
                 <a>
                   <span  class="label">Пријава</span>
@@ -25,7 +58,7 @@
               </li>
               <li>
                 <a>
-                  <span class="label">Регисрација</span>
+                  <span class="label">Регистрација</span>
                 </a>
               </li>
               <li>
@@ -39,4 +72,4 @@
       <main>
       </main>
     </mat-sidenav-content>
-  </mat-sidenav-container>
+  </mat-sidenav-container> -->

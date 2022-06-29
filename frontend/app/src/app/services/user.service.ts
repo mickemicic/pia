@@ -18,22 +18,6 @@ export class UserService {
     return this.http.post(`${this.uri}/user/login`, data);
   }
 
-  register(odgLice, username, password, passwordConfirm, phone, email, title, address, pib, matBr){
-    const data={
-      odgLice: odgLice,
-      username: username,
-      password: password,
-      passwordConfirm: passwordConfirm,
-      phone: phone,
-      email: email,
-      title: title,
-      address: address,
-      pib: pib,
-      matBr: matBr,
-      type: 0
-    }
 
-    return this.http.post(`${this.uri}/user/register`, data);
-
-  }
+  
 }
