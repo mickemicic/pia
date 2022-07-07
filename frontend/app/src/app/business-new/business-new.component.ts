@@ -65,4 +65,10 @@ export class BusinessNewComponent implements OnInit {
   actFormControl = new FormControl('', [Validators.required]);
   accFormControl = new FormControl('', [Validators.required, Validators.minLength(17), Validators.maxLength(17)]);
 
+  numRegister: number;
+
+  numSequence(n: number): Array<number> {
+    return Array(n);
+  }
+
 }
