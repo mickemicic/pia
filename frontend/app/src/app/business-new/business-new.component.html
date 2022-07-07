@@ -1,0 +1,75 @@
+<app-header></app-header>
+<body style="text-align: center;">
+    <form class="example-form">
+        <table class="example-full-width" cellSpacing="0">
+            <th>
+                <h2>Морате додати још информација о свом предузећу.</h2>
+            </th>
+            <tr>
+                <td>
+                    <mat-form-field appearance="fill">
+                        <mat-label>Категорија предузећа</mat-label>
+                        <mat-select name="category" required [formControl]="catFormControl" [errorStateMatcher]="matcher"> 
+                            <mat-option value="store">Продавница</mat-option>
+                            <mat-option value="hosp">Угоститељски објекат</mat-option>
+                        </mat-select>
+                        <mat-error *ngIf="catFormControl.hasError('required')">
+                            Морате одабрати категорију.
+                        </mat-error>
+                    </mat-form-field>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <mat-form-field appearance="fill">
+                        <mat-label>Шифра делатности</mat-label>
+                        <mat-select name="activities" required multiple [formControl]="actFormControl" [errorStateMatcher]="matcher"> 
+                            <mat-optgroup label="Угоститељство">
+                                <mat-option value="5510">Хотел и сличан смештај</mat-option>
+                                <mat-option value="5520">Одмаралишта и објекти за краћи боравак</mat-option>
+                                <mat-option value="5530">Кампови</mat-option>
+                                <mat-option value="5590">Остали смештај</mat-option>
+                                <mat-option value="5610">Ресторани</mat-option>
+                                <mat-option value="5621">Кетеринг</mat-option>
+                                <mat-option value="5629">Остале услуге припреме хране и пића</mat-option>
+                            </mat-optgroup>
+                            <mat-optgroup label="Продаја">
+                                <mat-option value="4639">Неспецијализована трговина на велико</mat-option>
+                                <mat-option value="4759">Трговина намештајем</mat-option>
+                                <mat-option value="4761">Трговина књигама</mat-option>
+                                <mat-option value="4779">Трговина половном робом</mat-option>
+                                <mat-option value="4791">Трговина на мало преко интернета</mat-option>
+                                <mat-option value="4799">Остала трговина на мало</mat-option>
+                            </mat-optgroup>
+                        </mat-select>
+                        <mat-error *ngIf="actFormControl.hasError('required')">
+                            Морате одабрати барем једну шифру делатности.
+                        </mat-error>
+                    </mat-form-field>
+                </td>
+            </tr>
+            <tr >
+                <td style="padding-top: 3%;">
+                    <mat-checkbox color="primary">Да ли сте део ПДВ система?</mat-checkbox>
+                </td>
+            </tr>
+            <tr>
+                <td style="padding-top: 3%;">
+                    <mat-form-field appearance="fill">
+                        <mat-label>Број рачуна:</mat-label>
+                        <input type="number" minlength="17" maxlength="17" matInput required [formControl]="accFormControl" [errorStateMatcher]="matcher">
+                        <mat-error *ngIf="accFormControl.hasError('required')">
+                            Морате унети број рачуна.
+                        </mat-error>
+                        <mat-error *ngIf="(accFormControl.hasError('minLength') || accFormControl.hasError('maxLength')) && !accFormControl.hasError('required')">
+                            Број рачуна мора имати 17 цифара.
+                        </mat-error>
+                    </mat-form-field>
+                </td>
+            </tr>
+            <tr>
+
+            </tr>
+        </table>
+    </form>
+</body>

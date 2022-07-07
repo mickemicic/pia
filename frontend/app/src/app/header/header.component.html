@@ -7,16 +7,57 @@
     <span>Република Србија - Фискализација</span>
     <span class="example-spacer"></span>
     <mat-menu #menu="matMenu">
-      <button mat-menu-item onclick="location.href = 'http://localhost:4200/'">
-        <span>Пријава</span>
-      </button>
-      <button mat-menu-item onclick="location.href = 'http://localhost:4200/register'">
-        <span>Регистрација</span>
-      </button>
-      <button mat-menu-item>
-        <span>Заврши рад</span>
-      </button>
-    </mat-menu>
+      <span *ngIf="user==null">
+        <button mat-menu-item onclick="location.href = 'http://localhost:4200/'">
+          <span>Пријава</span>
+        </button>
+      </span>
+      <span *ngIf="user==null">
+        <button mat-menu-item onclick="location.href = 'http://localhost:4200/register'">
+          <span>Регистрација</span>
+        </button>
+      </span>
+      <span *ngIf="user!=null && user.type==1">
+        <button mat-menu-item>
+          <span>Преглед података</span> <!--DODATI JEZICKE?? -->
+        </button>
+      </span>
+      <span *ngIf="user!=null && user.type==1">
+        <button mat-menu-item>
+          <span>Наручиоци</span>
+        </button>
+      </span>
+      <span *ngIf="user!=null && user.type==1">
+        <button mat-menu-item>
+          <span>Робе и услуге</span>
+        </button>
+      </span>
+      <span *ngIf="user!=null && user.type==1">
+        <button mat-menu-item>
+          <span>Распоред артикала</span>
+        </button>
+      </span>
+      <span *ngIf="user!=null && user.type==1 && user.restaurant==1">
+        <button mat-menu-item>
+          <span>Распоред столова</span>
+        </button>
+      </span>
+      <span *ngIf="user!=null && user.type==1">
+        <button mat-menu-item>
+          <span>Издавање рачуна</span>
+        </button>
+      </span>
+      <span *ngIf="user!=null && user.type==1">
+        <button mat-menu-item>
+          <span>Преглед извештаја</span>
+        </button>
+      </span>
+      <span *ngIf="user!=null">
+        <button mat-menu-item>
+          <span>Заврши рад</span>
+        </button>
+      </span>
+      </mat-menu>
   </mat-toolbar>
 </p>
 

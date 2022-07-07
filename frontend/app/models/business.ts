@@ -9,4 +9,6 @@ export class Business{
     address: string;
     pib: number;
     matBr: number;
+
+    restaurant: number; //0 ako nije, 1 ako jeste
 }

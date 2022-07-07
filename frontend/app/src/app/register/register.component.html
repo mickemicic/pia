@@ -139,7 +139,7 @@
                 </td>
                 <td>
                     <button color="primary" mat-raised-button onclick="document.getElementById('getFile').click()" for="getFile">Додај</button>
-                    <input type='file' id="getFile" style="display:none">        
+                    <input type='file' id="getFile" style="display:none" (change)="onFileSelected($event)">        
                 </td>
             </tr>
             <tr>

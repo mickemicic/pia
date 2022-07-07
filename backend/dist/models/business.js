@@ -35,6 +35,9 @@ let Business = new Schema({
     },
     matBr: {
         type: Number
+    },
+    restaurant: {
+        type: Number
     }
 });
 exports.default = mongoose_1.default.model('Business', Business, 'businesses');

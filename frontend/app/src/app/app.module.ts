@@ -14,6 +14,9 @@ import { HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MaterialModule } from './material/material.module';
 import { FlexLayoutModule } from '@angular/flex-layout';
+import { BusinessNewComponent } from './business-new/business-new.component';
+import { CustomAccControlComponent } from './custom-acc/custom-acc-control/custom-acc-control.component';
+import { CustomAccComponent } from './custom-acc/custom-acc/custom-acc.component';
 
 @NgModule({
   declarations: [
@@ -23,7 +26,10 @@ import { FlexLayoutModule } from '@angular/flex-layout';
     UserComponent,
     AdminComponent,
     BusinessComponent,
-    HeaderComponent
+    HeaderComponent,
+    BusinessNewComponent,
+    CustomAccControlComponent,
+    CustomAccComponent,
   ],
   imports: [
     BrowserModule,

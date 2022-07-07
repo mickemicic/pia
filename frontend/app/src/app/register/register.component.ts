@@ -40,6 +40,24 @@ export class RegisterComponent implements OnInit {
   constructor(private service: BusinessService, private router: Router) { }
 
   ngOnInit(): void {
+    if(JSON.parse(localStorage.getItem("loggedIn"))==true){
+      var user = JSON.parse(localStorage.getItem("user"));
+      switch(user.type){
+        case(-1):
+          this.router.navigate(['/businessNew']);
+          break;
+        case(1):
+          this.router.navigate(['/business']);
+          break;
+        case(2):
+          this.router.navigate(['/user']);
+          break;
+        case(0):
+          this.router.navigate(['/admin']);
+          break;
+      }
+    }
+
     this.hide = true;
     this.hideC = true;
   }
@@ -88,6 +106,16 @@ export class RegisterComponent implements OnInit {
 
 
   matcher = new MyErrorStateMatcher();
+
+
+  onFileSelected(event) {
+    if(event.target.files.length > 0) 
+     {
+       this.path = event.target.files[0].name;
+     }
+   }
+
+
 
   register(){
 

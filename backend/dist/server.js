@@ -9,6 +9,7 @@ const body_parser_1 = __importDefault(require("body-parser"));
 const mongoose_1 = __importDefault(require("mongoose"));
 const business_routes_1 = __importDefault(require("./routers/business.routes"));
 const business_routes_2 = __importDefault(require("./routers/business.routes"));
+const admin_routes_1 = __importDefault(require("./routers/admin.routes"));
 const app = (0, express_1.default)();
 app.use((0, cors_1.default)());
 app.use(body_parser_1.default.json());
@@ -20,6 +21,7 @@ connection.once('open', () => {
 const router = express_1.default.Router();
 router.use('/user', business_routes_1.default);
 router.use('/business', business_routes_2.default);
+router.use('/admin', admin_routes_1.default);
 app.use('/', router);
 app.listen(4000, () => console.log(`Express server running on port 4000`));
 //# sourceMappingURL=server.js.map
