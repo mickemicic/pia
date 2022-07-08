@@ -160,7 +160,7 @@ export class RegisterComponent implements OnInit {
         else{
           alert('Дошло је до грешке, молимо покушајте касније.')
         }
-        this.router.navigate['loginScreen'];
+        this.router.navigate[''];
     }))
   }
 

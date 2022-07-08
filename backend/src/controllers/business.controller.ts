@@ -60,4 +60,33 @@ export class BusinessController{
             else res.json(user);
         })
     }
+
+    extraInfo = (req: express.Request, res: express.Response)=>{
+        let username = req.body.username;
+
+        let category = req.body.category;
+        let activities = req.body.activities;
+        let pdv = req.body.pdv;
+        let accNum = req.body.accNum;
+        
+        Business.findOne({username: username}, (err, user)=>{
+            if(err){ 
+                console.log(err);
+            }
+            else{
+                Business.collection.updateOne({'username': username}, {$push: 
+                    {'category': category, 
+                    'activities': activities,
+                    'accNum': accNum,
+                    'pdv': pdv,
+                    'type': 1
+                }}).then(business=>{
+                    res.status(200).json({'message': 'data updated'});
+                }).catch(err=>{
+                    res.status(400).json({'message': 'error'});
+                })
+                
+            }
+        })
+    }
 }

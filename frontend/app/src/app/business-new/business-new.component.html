@@ -9,7 +9,7 @@
                 <td>
                     <mat-form-field appearance="fill">
                         <mat-label>Категорија предузећа</mat-label>
-                        <mat-select name="category" required [formControl]="catFormControl" [errorStateMatcher]="matcher"> 
+                        <mat-select name="category" [(ngModel)]="category" required [formControl]="catFormControl" [errorStateMatcher]="matcher"> 
                             <mat-option value="store">Продавница</mat-option>
                             <mat-option value="hosp">Угоститељски објекат</mat-option>
                         </mat-select>
@@ -23,7 +23,7 @@
                 <td>
                     <mat-form-field appearance="fill">
                         <mat-label>Шифра делатности</mat-label>
-                        <mat-select name="activities" required multiple [formControl]="actFormControl" [errorStateMatcher]="matcher"> 
+                        <mat-select name="activities" [(ngModel)]="activities" required multiple [formControl]="actFormControl" [errorStateMatcher]="matcher"> 
                             <mat-optgroup label="Угоститељство">
                                 <mat-option value="5510">Хотел и сличан смештај</mat-option>
                                 <mat-option value="5520">Одмаралишта и објекти за краћи боравак</mat-option>
@@ -50,14 +50,14 @@
             </tr>
             <tr >
                 <td style="padding-top: 3%;">
-                    <mat-checkbox color="primary">Да ли сте део ПДВ система?</mat-checkbox>
+                    <mat-checkbox color="primary" name="pdv">Да ли сте део ПДВ система?</mat-checkbox>
                 </td>
             </tr>
             <tr>
                 <td style="padding-top: 3%;">
                     <mat-form-field appearance="fill">
                         <mat-label>Број рачуна:</mat-label>
-                        <input type="number" minlength="17" maxlength="17" matInput required [formControl]="accFormControl" [errorStateMatcher]="matcher">
+                        <input [(ngModel)]="accNum" type="number" minlength="17" maxlength="17" matInput required [formControl]="accFormControl" [errorStateMatcher]="matcher">
                         <mat-error *ngIf="accFormControl.hasError('required')">
                             Морате унети број рачуна.
                         </mat-error>
@@ -69,6 +69,7 @@
             </tr>
             <tr>
                 <mat-form-field appearance="fill">
+                    <mat-label>Број фискалних каса</mat-label>
                     <mat-select name="registers" id="registers" [ngModel]="numRegister">
                         <mat-option value="1">1</mat-option>
                         <mat-option value="2">2</mat-option>
@@ -82,11 +83,18 @@
                         <mat-option value="10">10</mat-option>
                     </mat-select>
                 </mat-form-field>
-                <ul>
+                <!-- <ul>
                     <li *ngFor='let n of numSequence(numRegister)'>
                         <input type="text">
                     </li>
-                </ul>
+                </ul> -->
+            </tr>
+            <tr>
+                <td colspan="2" align="center" style="padding-top: 5%;">
+                    <button color="primary" mat-raised-button (click)="extraInfo()" >
+                        ДОДАЈ ПОДАТКЕ
+                    </button>
+                </td>
             </tr>
         </table>
     </form>

@@ -59,6 +59,30 @@ class BusinessController {
                     res.json(user);
             });
         };
+        this.extraInfo = (req, res) => {
+            let username = req.body.username;
+            let category = req.body.category;
+            let activities = req.body.activities;
+            let pdv = req.body.pdv;
+            let accNum = req.body.accNum;
+            business_2.default.findOne({ username: username }, (err, user) => {
+                if (err) {
+                    console.log(err);
+                }
+                else {
+                    business_2.default.collection.updateOne({ 'username': username }, { $push: { 'category': category,
+                            'activities': activities,
+                            'accNum': accNum,
+                            'pdv': pdv,
+                            'type': 1
+                        } }).then(business => {
+                        res.status(200).json({ 'message': 'data updated' });
+                    }).catch(err => {
+                        res.status(400).json({ 'message': 'error' });
+                    });
+                }
+            });
+        };
     }
 }
 exports.BusinessController = BusinessController;

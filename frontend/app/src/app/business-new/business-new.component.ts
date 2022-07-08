@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, FormGroupDirective, NgForm, Validators } from '@angular/forms';
 import { ErrorStateMatcher } from '@angular/material/core';
 import { Router } from '@angular/router';
+import { BusinessService } from '../services/business.service';
 
 
 export class MyErrorStateMatcher implements ErrorStateMatcher {
@@ -34,7 +35,7 @@ export function ConfirmedValidator(controlName: string, matchingControlName: str
 })
 export class BusinessNewComponent implements OnInit {
 
-  constructor(private router: Router) { }
+  constructor(private router: Router, private service: BusinessService) { }
 
   ngOnInit(): void {
     if(JSON.parse(localStorage.getItem("loggedIn"))==true){
@@ -67,8 +68,25 @@ export class BusinessNewComponent implements OnInit {
 
   numRegister: number;
 
+  activities: Array<String>;
+  pdv: boolean;
+  category: string;
+  accNum: number;
+
   numSequence(n: number): Array<number> {
     return Array(n);
+  }
+
+  extraInfo(){
+    this.service.extraInfo(this.category, this.activities, this.pdv, this.accNum).subscribe((resp=>{
+      if(resp['message']=='data updated'){
+        this.router.navigate['/business'];
+      }
+      else{
+        alert('Дошло је до грешке, молимо покушајте касније.');
+        this.service.logout();
+      }
+    }))
   }
 
 }

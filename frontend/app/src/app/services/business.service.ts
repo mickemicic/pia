@@ -18,6 +18,11 @@ export class BusinessService {
     return this.http.post(`${this.uri}/business/login`, data);
   }
 
+  logout(){
+    localStorage.clear();
+    return;
+  }
+
 
   getUser(username){
     const data={
@@ -50,5 +55,16 @@ export class BusinessService {
 
     return this.http.post(`${this.uri}/business/register`, data);
 
+  }
+
+  extraInfo(category, activities, pdv, accNum){
+    const data={
+      category: category,
+      actovities: activities,
+      pdv: pdv, 
+      accNum: accNum
+    }
+
+    return this.http.post(`${this.uri}/business/extraInfo`, data);
   }
 }

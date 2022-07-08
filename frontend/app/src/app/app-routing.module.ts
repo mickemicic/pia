@@ -10,8 +10,8 @@ import { RegisterComponent } from './register/register.component';
 import { UserComponent } from './user/user.component';
 
 const routes: Routes = [
-  {path:'', component: LoginComponent},
-  {path:'user', component: UserComponent},
+  {path: '', component: LoginComponent},
+  {path: 'user', component: UserComponent},
   {path: 'business', component: BusinessComponent},
   {path: 'admin', component: AdminComponent},
   {path: 'register', component: RegisterComponent},

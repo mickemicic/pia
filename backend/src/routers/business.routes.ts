@@ -18,4 +18,8 @@ BusinessRouter.route('/searchMail').post(
     (req, res)=>new BusinessController().searchMail(req, res)
 )
 
+BusinessRouter.route('/extraInfo').post(
+    (req, res)=>new BusinessController().extraInfo(req, res)
+)
+
 export default BusinessRouter;

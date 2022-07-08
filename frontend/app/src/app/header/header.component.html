@@ -53,7 +53,7 @@
         </button>
       </span>
       <span *ngIf="user!=null">
-        <button mat-menu-item>
+        <button mat-menu-item (click)="logout()">
           <span>Заврши рад</span>
         </button>
       </span>

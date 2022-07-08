@@ -10,5 +10,6 @@ BusinessRouter.route('/login').post((req, res) => new Business_controller_1.Busi
 BusinessRouter.route('/register').post((req, res) => new Business_controller_1.BusinessController().register(req, res));
 BusinessRouter.route('/search').post((req, res) => new Business_controller_1.BusinessController().search(req, res));
 BusinessRouter.route('/searchMail').post((req, res) => new Business_controller_1.BusinessController().searchMail(req, res));
+BusinessRouter.route('/extraInfo').post((req, res) => new Business_controller_1.BusinessController().extraInfo(req, res));
 exports.default = BusinessRouter;
 //# sourceMappingURL=business.routes.js.map
