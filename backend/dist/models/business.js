@@ -38,6 +38,18 @@ let Business = new Schema({
     },
     restaurant: {
         type: Number
+    },
+    activities: {
+        type: Array
+    },
+    pdv: {
+        type: Boolean
+    },
+    accNum: {
+        type: Number
+    },
+    category: {
+        type: String
     }
 });
 exports.default = mongoose_1.default.model('Business', Business, 'businesses');

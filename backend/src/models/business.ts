@@ -35,6 +35,18 @@ let Business = new Schema({
     },
     restaurant:{
         type: Number
+    },
+    activities:{
+        type: Array
+    },
+    pdv:{
+        type: Boolean
+    },
+    accNum:{
+        type: Number
+    },
+    category:{
+        type: String
     }
 })
 

@@ -59,3 +59,8 @@ width: 100%;
 td {
 padding-right: 8px;
 }
+
+.error{
+    color: red;
+    font-style: oblique;
+}

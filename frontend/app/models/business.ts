@@ -10,5 +10,9 @@ export class Business{
     pib: number;
     matBr: number;
 
+    pdv: boolean;
+    activities: Array<String>;
+    category: String;
+
     restaurant: number; //0 ako nije, 1 ako jeste
 }

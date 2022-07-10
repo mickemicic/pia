@@ -65,12 +65,13 @@ class BusinessController {
             let activities = req.body.activities;
             let pdv = req.body.pdv;
             let accNum = req.body.accNum;
-            business_2.default.findOne({ username: username }, (err, user) => {
+            console.log(username, category, activities, pdv, accNum);
+            business_2.default.findOne({ username: username }, (err, business) => {
                 if (err) {
                     console.log(err);
                 }
                 else {
-                    business_2.default.collection.updateOne({ 'username': username }, { $push: { 'category': category,
+                    business_2.default.collection.updateOne({ 'username': username }, { $set: { 'category': category,
                             'activities': activities,
                             'accNum': accNum,
                             'pdv': pdv,

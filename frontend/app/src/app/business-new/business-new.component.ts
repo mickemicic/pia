@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, FormGroupDirective, NgForm, Validators } from '@angular/forms';
 import { ErrorStateMatcher } from '@angular/material/core';
 import { Router } from '@angular/router';
+import { Business } from 'models/business';
 import { BusinessService } from '../services/business.service';
 
 
@@ -39,15 +40,15 @@ export class BusinessNewComponent implements OnInit {
 
   ngOnInit(): void {
     if(JSON.parse(localStorage.getItem("loggedIn"))==true){
-      var user = JSON.parse(localStorage.getItem("user"));
-      switch(user.type){
+      this.user = JSON.parse(localStorage.getItem("user"));
+      switch(this.user.type){
         case(-1):
           this.router.navigate(['/businessNew']);
           break;
         case(1):
           this.router.navigate(['/business']);
           break;
-        case(2):
+        case(2): 
           this.router.navigate(['/user']);
           break;
         case(0):
@@ -57,6 +58,8 @@ export class BusinessNewComponent implements OnInit {
     }
     else
       this.router.navigate(['']);
+
+      this.numSeq = new Array(1).fill(0);
   }
 
   matcher = new MyErrorStateMatcher();
@@ -73,12 +76,33 @@ export class BusinessNewComponent implements OnInit {
   category: string;
   accNum: number;
 
-  numSequence(n: number): Array<number> {
-    return Array(n);
+  message: string;
+
+  user: Business;
+
+  numSeq: Array<number>
+
+  kaseL: Array<String>;
+  kaseT: Array<String>;
+
+  numSequence(){
+    this.numSeq = new Array<number>(0);      
+    this.kaseL = new Array<String>("");      
+    this.kaseT = new Array<String>("");      
+    for (let index = 0; index < this.numRegister; index++) {
+      this.numSeq.push(index);
+      this.kaseL.push("");
+      this.kaseT.push("");
+    } 
+    
   }
 
   extraInfo(){
-    this.service.extraInfo(this.category, this.activities, this.pdv, this.accNum).subscribe((resp=>{
+    if( this.category == null || this.accNum == null){
+      this.message = "Сва поља су обавезна.";
+      return;
+    }
+    this.service.extraInfo(this.category, this.activities, this.pdv, this.accNum, this.user.username).subscribe((resp=>{
       if(resp['message']=='data updated'){
         this.router.navigate['/business'];
       }

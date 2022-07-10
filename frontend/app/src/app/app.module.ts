@@ -17,6 +17,7 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 import { BusinessNewComponent } from './business-new/business-new.component';
 import { CustomAccControlComponent } from './custom-acc/custom-acc-control/custom-acc-control.component';
 import { CustomAccComponent } from './custom-acc/custom-acc/custom-acc.component';
+// import { ExampleTelInputComponent } from './ang-custom/example-tel-input/example-tel-input.component';
 
 @NgModule({
   declarations: [
@@ -30,6 +31,7 @@ import { CustomAccComponent } from './custom-acc/custom-acc/custom-acc.component
     BusinessNewComponent,
     CustomAccControlComponent,
     CustomAccComponent,
+    // ExampleTelInputComponent,
   ],
   imports: [
     BrowserModule,

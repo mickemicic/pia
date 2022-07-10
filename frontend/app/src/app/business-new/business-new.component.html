@@ -50,7 +50,7 @@
             </tr>
             <tr >
                 <td style="padding-top: 3%;">
-                    <mat-checkbox color="primary" name="pdv">Да ли сте део ПДВ система?</mat-checkbox>
+                    <mat-checkbox color="primary" name="pdv" [(ngModel)]="pdv">Да ли сте део ПДВ система?</mat-checkbox>
                 </td>
             </tr>
             <tr>
@@ -70,7 +70,7 @@
             <tr>
                 <mat-form-field appearance="fill">
                     <mat-label>Број фискалних каса</mat-label>
-                    <mat-select name="registers" id="registers" [ngModel]="numRegister">
+                    <mat-select name="registers" id="registers" [(ngModel)]="numRegister" (selectionChange)="numSequence();" >
                         <mat-option value="1">1</mat-option>
                         <mat-option value="2">2</mat-option>
                         <mat-option value="3">3</mat-option>
@@ -83,11 +83,29 @@
                         <mat-option value="10">10</mat-option>
                     </mat-select>
                 </mat-form-field>
-                <!-- <ul>
-                    <li *ngFor='let n of numSequence(numRegister)'>
-                        <input type="text">
-                    </li>
-                </ul> -->
+                <div *ngIf="numRegister != null" >
+                    <div *ngFor='let n of numSeq'>
+                        <mat-form-field>
+                            <mat-label>Локација касе број {{n + 1}}</mat-label>
+                            <input type="text" matInput [(ngModel)]="kaseL[n]" name="kaseL" required>
+                        </mat-form-field>
+                        <mat-form-field>
+                            <mat-label>Тип касе број {{n + 1}}</mat-label>
+                            <mat-select name="kaseT" required="" [(ngModel)]="kaseT[n]">
+                                <mat-option value="gp350">GP350</mat-option>
+                                <mat-option value="gp100">GP100</mat-option>
+                                <mat-option value="gp450">GP450</mat-option>
+                                <mat-option value="xm332">XM332</mat-option>
+                                <mat-option value="sg355">SG355</mat-option>
+                            </mat-select>
+                        </mat-form-field>
+                    </div>
+                </div> 
+            </tr>
+            <tr>
+                <td>
+                    <div class="error"> {{message}}</div>
+                </td>
             </tr>
             <tr>
                 <td colspan="2" align="center" style="padding-top: 5%;">
