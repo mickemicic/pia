@@ -50,6 +50,9 @@ let Business = new Schema({
     },
     category: {
         type: String
+    },
+    logo: {
+        type: String
     }
 });
 exports.default = mongoose_1.default.model('Business', Business, 'businesses');

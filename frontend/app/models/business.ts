@@ -14,5 +14,7 @@ export class Business{
     activities: Array<String>;
     category: String;
 
+    logo: String;
+
     restaurant: number; //0 ako nije, 1 ako jeste
 }

@@ -38,7 +38,7 @@ export class BusinessService {
     return this.http.post(`${this.uri}/business/searchMail`, data);
   }
 
-  register(odgLice, username, password, passwordConfirm, phone, email, title, address, pib, matBr){
+  register(odgLice, username, password, passwordConfirm, phone, email, title, address, pib, matBr, logo){
     const data={
       odgLice: odgLice,
       username: username,
@@ -50,7 +50,8 @@ export class BusinessService {
       address: address,
       pib: pib,
       matBr: matBr,
-      type: 0
+      type: 0,
+      logo: logo,
     }
 
     return this.http.post(`${this.uri}/business/register`, data);

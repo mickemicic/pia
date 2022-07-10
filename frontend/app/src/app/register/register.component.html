@@ -1,6 +1,6 @@
 <app-header></app-header>
 <body style="text-align: center;">
-    <form class="example-form">
+    <form class="example-form" method="post" enctype="multipart/form-data">
         <table class="example-full-width" cellspacing="0">
             <tr>
                 <td colspan="2">
@@ -133,13 +133,13 @@
             <tr>
                 <td>
                     <mat-form-field class="example-full-width" appearance="fill">
-                        <mat-label>Лого предузећа</mat-label>
-                        <input matInput disabled="true" id="logo" name="logo" value="" [(ngModel)]="path">
+                        <mat-label>Лого предузећа *</mat-label>
+                        <input matInput disabled="true" id="logo" name="logo" value="" [(ngModel)]="name" >
                     </mat-form-field>
                 </td>
                 <td>
                     <button color="primary" mat-raised-button onclick="document.getElementById('getFile').click()" for="getFile">Додај</button>
-                    <input type='file' id="getFile" style="display:none" (change)="onFileSelected($event)">        
+                    <input type='file' id="getFile" style="display:none"  (change)="onFileSelected($event)">        
                 </td>
             </tr>
             <tr>

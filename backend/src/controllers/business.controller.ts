@@ -1,9 +1,7 @@
 import * as express from 'express'
 import business from '../models/business';
 import Business from '../models/business';
-import User from '../models/user';
-
-
+import * as fs from 'fs'
 
 export class BusinessController{
     login = (req: express.Request, res: express.Response)=>{
@@ -28,7 +26,17 @@ export class BusinessController{
         let address = req.body.address;
         let pib = req.body.pib;
         let matBr = req.body.matBr;
-        
+        let logo = req.body.logo;
+
+        // let file = req.body.file;
+        // console.log(file + "hehe");
+        // console.log(logo);
+
+        // let base64 = file.toString('base64');
+        // let buff = new Buffer(base64, 'base64');
+
+        // let bitmap = fs.readFileSync(file);
+        // let buff = new Buffer(bitmap).toString('base64');
 
         // if(User.findOne({'username': username})){
         //     res.status(400).json({'message': 'existing'});
@@ -36,12 +44,12 @@ export class BusinessController{
         // }
 
         let business = new Business({username: username, password: password, odgLice: odgLice, phone: phone, email: email, 
-            title: title, address: address, pib: pib, matBr: matBr, type: type});
+            title: title, address: address, pib: pib, matBr: matBr, type: type, logo: logo});
 
         business.save().then(business=>{
             res.status(200).json({'message': 'user added'});
         }).catch(err=>{
-            res.status(400).json({'message': 'error'});
+            res.status(400).json({'message': 'errorReg'});
         })
     }
 

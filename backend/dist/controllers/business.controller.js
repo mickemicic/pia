@@ -29,16 +29,24 @@ class BusinessController {
             let address = req.body.address;
             let pib = req.body.pib;
             let matBr = req.body.matBr;
+            let logo = req.body.logo;
+            // let file = req.body.file;
+            // console.log(file + "hehe");
+            // console.log(logo);
+            // let base64 = file.toString('base64');
+            // let buff = new Buffer(base64, 'base64');
+            // let bitmap = fs.readFileSync(file);
+            // let buff = new Buffer(bitmap).toString('base64');
             // if(User.findOne({'username': username})){
             //     res.status(400).json({'message': 'existing'});
             //     return;
             // }
             let business = new business_2.default({ username: username, password: password, odgLice: odgLice, phone: phone, email: email,
-                title: title, address: address, pib: pib, matBr: matBr, type: type });
+                title: title, address: address, pib: pib, matBr: matBr, type: type, logo: logo });
             business.save().then(business => {
                 res.status(200).json({ 'message': 'user added' });
             }).catch(err => {
-                res.status(400).json({ 'message': 'error' });
+                res.status(400).json({ 'message': 'errorReg' });
             });
         };
         this.search = (req, res) => {
@@ -65,7 +73,6 @@ class BusinessController {
             let activities = req.body.activities;
             let pdv = req.body.pdv;
             let accNum = req.body.accNum;
-            console.log(username, category, activities, pdv, accNum);
             business_2.default.findOne({ username: username }, (err, business) => {
                 if (err) {
                     console.log(err);

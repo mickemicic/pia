@@ -47,6 +47,9 @@ let Business = new Schema({
     },
     category:{
         type: String
+    },
+    logo:{
+        type: String
     }
 })
 

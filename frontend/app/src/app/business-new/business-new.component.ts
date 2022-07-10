@@ -78,12 +78,13 @@ export class BusinessNewComponent implements OnInit {
 
   message: string;
 
-  user: Business;
+  user: Business = JSON.parse(localStorage.getItem("user"));
 
   numSeq: Array<number>
 
   kaseL: Array<String>;
   kaseT: Array<String>;
+
 
   numSequence(){
     this.numSeq = new Array<number>(0);      
@@ -103,8 +104,13 @@ export class BusinessNewComponent implements OnInit {
       return;
     }
     this.service.extraInfo(this.category, this.activities, this.pdv, this.accNum, this.user.username).subscribe((resp=>{
+      console.log(resp['message']);
       if(resp['message']=='data updated'){
-        this.router.navigate['/business'];
+        this.user.type = 1;
+        localStorage.setItem("user", JSON.stringify(this.user));
+        alert("Успешно сте додали податке");
+
+        this.router.navigate(['']);
       }
       else{
         alert('Дошло је до грешке, молимо покушајте касније.');

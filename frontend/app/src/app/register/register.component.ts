@@ -5,6 +5,7 @@ import { ErrorStateMatcher } from '@angular/material/core';
 import { User } from 'models/user';
 import { BusinessService } from '../services/business.service';
 import { Router } from '@angular/router';
+import { HttpClient } from '@angular/common/http';
 
 /** Error when invalid control is dirty, touched, or submitted. */
 export class MyErrorStateMatcher implements ErrorStateMatcher {
@@ -29,6 +30,10 @@ export function ConfirmedValidator(controlName: string, matchingControlName: str
   }
 }
 
+class ImageSnippet{
+  constructor(public src: string, public file: File){}
+}
+
 
 @Component({
   selector: 'app-register',
@@ -37,7 +42,7 @@ export function ConfirmedValidator(controlName: string, matchingControlName: str
 })
 export class RegisterComponent implements OnInit {
 
-  constructor(private service: BusinessService, private router: Router) { }
+  constructor(private service: BusinessService, private router: Router, private http: HttpClient) { }
 
   ngOnInit(): void {
     if(JSON.parse(localStorage.getItem("loggedIn"))==true){
@@ -80,7 +85,7 @@ export class RegisterComponent implements OnInit {
   address: string;
   pib: number;
   matBr: number;
-  path: string;
+  logo: string;
 
   ima: number;
 
@@ -107,13 +112,56 @@ export class RegisterComponent implements OnInit {
 
   matcher = new MyErrorStateMatcher();
 
+  file: File;
+  name: string;
 
-  onFileSelected(event) {
-    if(event.target.files.length > 0) 
-     {
-       this.path = event.target.files[0].name;
-     }
-   }
+  isImageSaved: boolean;
+
+  onFileSelected(fileInput) {
+
+    if (fileInput.target.files && fileInput.target.files[0]) {
+      this.file = fileInput.target.files[0];
+      this.name = this.file.name;
+
+      const max_height = 300;
+      const max_width = 300;
+      const min_height = 100;
+      const min_width = 100;
+
+      const reader = new FileReader();
+      reader.onload = (e: any) => {
+        const image = new Image();
+        image.src = e.target.result;
+        image.onload = rs => {
+          const img_height = rs.currentTarget['height'];
+          const img_width = rs.currentTarget['width'];
+
+          console.log(img_height, img_width);
+
+
+          if (img_height > max_height || img_width > max_width) {
+            this.message = "Максималне димензије слике су 300px*300px"
+          } else if(img_height < min_height || img_width < min_width){
+            this.message = "Минималне димензије слике су 100px*100px"
+          } 
+          else {
+              const imgBase64Path = e.target.result;
+              this.logo = imgBase64Path;
+              this.isImageSaved = true;
+              console.log(this.logo);
+              // this.previewImagePath = imgBase64Path;
+          }
+        };
+      };
+
+        reader.readAsDataURL(fileInput.target.files[0]);
+    }
+
+
+    // this.file = event.target.files[0];
+    // this.path = event.target.files[0].name;
+    // console.log(this.file)
+   }  
 
 
 
@@ -152,15 +200,20 @@ export class RegisterComponent implements OnInit {
       }
     })
 
+    if(this.file == undefined){
+      this.message = "Морате одабрати лого предузећа.";
+      return;
+    }
+
     this.service.register(this.odgLice, this.username, this.password, this.passwordConfirm, this.phone, 
-      this.email, this.title, this.address, this.pib, this.matBr).subscribe((resp=>{
+      this.email, this.title, this.address, this.pib, this.matBr, this.logo).subscribe((resp=>{
         if(resp['message']=='user added'){
           alert('Захтев за регистрацију је успешно послат.');
         }
         else{
-          alert('Дошло је до грешке, молимо покушајте касније.')
+          alert('Дошло је до грешке, молимо покушајте касније.');
         }
-        this.router.navigate[''];
+        this.router.navigate(['']);
     }))
   }
 
