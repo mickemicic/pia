@@ -1,0 +1,65 @@
+<app-header></app-header>
+<body style="text-align: center;">
+    <form class="example-form">
+        <table class="example-full-width" cellspacing="0">
+            <tr>
+                <td>
+                    <mat-form-field class="example-full-width" appearance="fill">
+                        <mat-label>Одговорно лице</mat-label>
+                        <input matInput name="name" placeholder="Нпр. Петар Петровић" [(ngModel)]="odgLice" [formControl]="nameFormControl" [errorStateMatcher]="matcher">
+                        <mat-error *ngIf="nameFormControl.hasError('pattern') && !nameFormControl.hasError('required')">
+                            Молимо унесите коректно име и презиме
+                        </mat-error>
+                        <mat-error *ngIf="nameFormControl.hasError('required')">
+                            Одговорно лице је <strong>обавезно</strong> поље.
+                        </mat-error>
+                    </mat-form-field>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <mat-form-field class="example-full-width" appearance="fill">
+                        <mat-label>Адреса е-поште</mat-label>
+                        <input type="email" matInput [formControl]="emailFormControl" [errorStateMatcher]="matcher"
+                            placeholder="Нпр. adresa@posta.rs" [(ngModel)]="email" name="email" id="email">
+                        <mat-error *ngIf="emailFormControl.hasError('email') && !emailFormControl.hasError('required')">
+                            Молимо унесите коректну адресу е-поште
+                        </mat-error>
+                        <mat-error *ngIf="emailFormControl.hasError('required')">
+                            Е-пошта је <strong>обавезно</strong> поље.
+                        </mat-error>
+                    </mat-form-field>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <mat-form-field class="example-full-width" appearance="fill">
+                        <mat-label>Контакт телефон</mat-label>
+                        <input matInput [(ngModel)]="phone" name="phone" [formControl]="phoneFormControl" [errorStateMatcher]="matcher" >
+                        <mat-hint>
+                            Унети у формату +381ХХХХХХХХХ.
+                        </mat-hint>
+                        <mat-error *ngIf="phoneFormControl.hasError('required')"> 
+                            Контакт телефон је <strong>обавезно</strong> поље.
+                        </mat-error>
+                        <mat-error *ngIf="phoneFormControl.hasError('pattern') && !phoneFormControl.hasError('required')"> 
+                            Телефон мора бити у одговарајућем формату.
+                        </mat-error>
+                    </mat-form-field>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2" align="center" style="padding-top: 5%;">
+                    <button color="primary" mat-raised-button (click)="update()">
+                        САЧУВАЈ ПОДАТКЕ
+                    </button>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <mat-error>{{message}}</mat-error>
+                </td>
+            </tr>
+        </table>
+    </form>
+</body>

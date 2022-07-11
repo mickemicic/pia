@@ -9,8 +9,14 @@ let User = new Schema({
     password:{
         type: String
     },
-    type:{
+    name:{
         type: String
+    },
+    phone:{
+        type: Number
+    },
+    id:{
+        type: Number
     }
 })
 

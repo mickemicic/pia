@@ -1,0 +1,22 @@
+<app-header></app-header>
+<body style="text-align: center;">
+    <form class="exampple-form">
+        <table class="example-full-width" appearance="fill">
+            <tr>
+                <th>
+                    <h1>Наручиоци</h1>
+                </th>
+            </tr>
+            <tr>
+                <td>
+                    <button color="primary" mat-raised-button onclick="location.href = 'http://localhost:4200/orderersAdd'">
+                        Додај новог наручиоца
+                    </button>
+                </td>
+            </tr>
+            <div *ngFor="let o of orderers">
+                {{o.title}}
+            </div>
+        </table>
+    </form>
+</body>

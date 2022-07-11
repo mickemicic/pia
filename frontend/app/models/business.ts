@@ -3,7 +3,7 @@ export class Business{
     password: string;
     type: number;
     odgLice: string;
-    phone: number;
+    phone: string;
     email: string;
     title: string;
     address: string;
@@ -14,6 +14,8 @@ export class Business{
     activities: Array<String>;
     category: String;
 
+    accNum: number;
+
     logo: String;
 
     restaurant: number; //0 ako nije, 1 ako jeste
@@ -21,10 +23,12 @@ export class Business{
     skladista:{
         id: Array<String>,
         naziv: Array<String>
-    }
+    };
 
     kase:{
         lokacija: Array<String>,
         tip: Array<String>
-    }
+    };
+
+    orderers: Array<number>;
 }

@@ -22,4 +22,16 @@ BusinessRouter.route('/extraInfo').post(
     (req, res)=>new BusinessController().extraInfo(req, res)
 )
 
+BusinessRouter.route('/update').post(
+    (req, res)=>new BusinessController().update(req, res)
+)
+
+BusinessRouter.route('/updateAcc').post(
+    (req, res)=>new BusinessController().updateAcc(req, res)
+)
+
+BusinessRouter.route('/updateStorage').post(
+    (req, res)=>new BusinessController().updateStorage(req, res)
+)
+
 export default BusinessRouter;

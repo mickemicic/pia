@@ -109,8 +109,8 @@ export class BusinessNewComponent implements OnInit {
   numSequenceW(){
     this.numSeqW = new Array<number>(0);
 
-    this.skladistaId = new Array<String>(".");      
-    this.skladistaNaz = new Array<String>("."); 
+    this.skladistaId = new Array<String>("");      
+    this.skladistaNaz = new Array<String>(""); 
 
     for (let index = 0; index < this.numWarehouse; index++) {
       this.numSeqW.push(index);

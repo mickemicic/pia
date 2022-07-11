@@ -30,9 +30,6 @@ export function ConfirmedValidator(controlName: string, matchingControlName: str
   }
 }
 
-class ImageSnippet{
-  constructor(public src: string, public file: File){}
-}
 
 
 @Component({
@@ -90,7 +87,7 @@ export class RegisterComponent implements OnInit {
   ima: number;
 
 
-  emailFormControl = new FormControl('', [Validators.required, Validators.email])
+  emailFormControl = new FormControl('', [Validators.required, Validators.email]);
   passFormControl = new FormControl('', [Validators.required, Validators.pattern(/(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,12}/)]);
   passCFormControl = new FormControl('', Validators.required);
   nameFormControl = new FormControl('', [Validators.required, Validators.pattern(/([A-Z]{1}[a-z]+[ ]*)+/)]);
@@ -114,6 +111,8 @@ export class RegisterComponent implements OnInit {
 
   file: File;
   name: string;
+  imgH: number;
+  imgW: number;
 
   isImageSaved: boolean;
 
@@ -135,6 +134,9 @@ export class RegisterComponent implements OnInit {
         image.onload = rs => {
           const img_height = rs.currentTarget['height'];
           const img_width = rs.currentTarget['width'];
+
+          this.imgH = img_height;
+          this.imgW = img_width;
 
           console.log(img_height, img_width);
 
@@ -186,14 +188,14 @@ export class RegisterComponent implements OnInit {
       return;
     }
 
-    this.service.getUser(this.username).subscribe((user: User)=>{
+    this.service.getUser(this.username).subscribe((user: Business)=>{
       if(user){
         this.message = "Корисничко име је заузето.";
         return;
       }
     })
 
-    this.service.getUserM(this.email).subscribe((user: User)=>{
+    this.service.getUserM(this.email).subscribe((user: Business)=>{
       if(user){
         this.message = "Већ постоји налог са унетом е-поштом.";
         return;
@@ -204,6 +206,14 @@ export class RegisterComponent implements OnInit {
       this.message = "Морате одабрати лого предузећа.";
       return;
     }
+
+    if (this.imgH > 300 || this.imgW > 300) {
+      this.message = "Максималне димензије слике су 300px*300px"
+      return;
+    } else if(this.imgH < 100 || this.imgW < 100){
+      this.message = "Минималне димензије слике су 100px*100px"
+      return;
+    } 
 
     this.service.register(this.odgLice, this.username, this.password, this.passwordConfirm, this.phone, 
       this.email, this.title, this.address, this.pib, this.matBr, this.logo).subscribe((resp=>{

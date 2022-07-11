@@ -18,11 +18,28 @@
         </button>
       </span>
       <span *ngIf="user!=null && user.type==1">
-        <button mat-menu-item>
+        <button mat-menu-item [matMenuTriggerFor]="menu2">
           <span>Преглед података</span> <!--DODATI JEZICKE?? -->
         </button>
+        <mat-menu #menu2="matMenu">
+          <span>
+            <button mat-menu-item onclick="location.href = 'http://localhost:4200/dataBasic'"> 
+              Основни подаци
+            </button>
+          </span>
+          <span>
+            <button mat-menu-item onclick="location.href = 'http://localhost:4200/dataAcc'">
+              Жиро рачун
+            </button>
+          </span>
+          <span>
+            <button mat-menu-item onclick="location.href = 'http://localhost:4200/dataStorage'">
+              Магацини и касе
+            </button>
+          </span>
+        </mat-menu>
       </span>
-      <span *ngIf="user!=null && user.type==1">
+      <span *ngIf="user!=null && user.type==1" onclick="location.href = 'http://localhost:4200/orderers'">
         <button mat-menu-item>
           <span>Наручиоци</span>
         </button>

@@ -58,6 +58,9 @@ let Business = new Schema({
     kase:{
         lokacija: Array<String>,
         tip: Array<String>
+    },
+    orderers:{
+        type: Array<number>
     }
 })
 

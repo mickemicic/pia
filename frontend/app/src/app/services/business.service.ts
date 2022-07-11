@@ -38,6 +38,13 @@ export class BusinessService {
     return this.http.post(`${this.uri}/business/searchMail`, data);
   }
 
+  getUserPIB(pib){
+    const data={
+      pib: pib
+    }
+    return this.http.post(`${this.uri}/business/searchPIB`, data);
+  }
+
   register(odgLice, username, password, passwordConfirm, phone, email, title, address, pib, matBr, logo){
     const data={
       odgLice: odgLice,
@@ -72,5 +79,35 @@ export class BusinessService {
     }
 
     return this.http.post(`${this.uri}/business/extraInfo`, data);
+  }
+
+
+  update(odgLice, phone, email, username){
+    const data={
+      odgLice: odgLice,
+      phone: phone,
+      email: email,
+      username: username
+    }
+    return this.http.post(`${this.uri}/business/update`, data);
+  }
+
+  updateAcc(accNum, username){
+    const data={
+      accNum: accNum,
+      username: username
+    }
+    return this.http.post(`${this.uri}/business/updateAcc`, data);
+  }
+
+  updateStorage(kaseL, kaseT, skladistaNaz, skladistaId, username){
+    const data={
+      kaseL: kaseL,
+      kaseT: kaseT,
+      skladistaId: skladistaId,
+      skladistaNaz: skladistaNaz,
+      username: username
+    }
+    return this.http.post(`${this.uri}/business/updateStorage`, data);
   }
 }

@@ -1,0 +1,22 @@
+<app-header></app-header>
+<body style="text-align: center;">
+    <form class="example-form">
+        <table class="example-full-width" cellspacing="0">
+            <tr>
+                <td>
+                    <mat-form-field class="example-full-width" appearance="fill">
+                        <mat-label>Број рачуна</mat-label>
+                        <input matInput name="accNum" [(ngModel)]="accNum" type="number">
+                    </mat-form-field>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2" align="center">
+                    <button color="primary" mat-raised-button (click)="update()">
+                        САЧУВАЈ ПОДАТКЕ
+                    </button>
+                </td>
+            </tr>
+        </table>
+    </form>
+</body>

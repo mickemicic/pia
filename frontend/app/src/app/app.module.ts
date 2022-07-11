@@ -17,6 +17,15 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 import { BusinessNewComponent } from './business-new/business-new.component';
 import { CustomAccControlComponent } from './custom-acc/custom-acc-control/custom-acc-control.component';
 import { CustomAccComponent } from './custom-acc/custom-acc/custom-acc.component';
+import { BusinessDataBasicComponent } from './business-data-basic/business-data-basic.component';
+import { BusinessDataAccountsComponent } from './business-data-accounts/business-data-accounts.component';
+import { BusinessDataStorageComponent } from './business-data-storage/business-data-storage.component';
+import { OrderersComponent } from './orderers/orderers.component';
+import { FacilitiesComponent } from './facilities/facilities.component';
+import { InventoryComponent } from './inventory/inventory.component';
+import { ChecksComponent } from './checks/checks.component';
+import { ReportsComponent } from './reports/reports.component';
+import { OrderersAddComponent } from './orderers-add/orderers-add.component';
 // import { ExampleTelInputComponent } from './ang-custom/example-tel-input/example-tel-input.component';
 
 @NgModule({
@@ -31,6 +40,15 @@ import { CustomAccComponent } from './custom-acc/custom-acc/custom-acc.component
     BusinessNewComponent,
     CustomAccControlComponent,
     CustomAccComponent,
+    BusinessDataBasicComponent,
+    BusinessDataAccountsComponent,
+    BusinessDataStorageComponent,
+    OrderersComponent,
+    FacilitiesComponent,
+    InventoryComponent,
+    ChecksComponent,
+    ReportsComponent,
+    OrderersAddComponent,
     // ExampleTelInputComponent,
   ],
   imports: [

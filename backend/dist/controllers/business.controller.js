@@ -99,6 +99,67 @@ class BusinessController {
                 }
             });
         };
+        this.update = (req, res) => {
+            let username = req.body.username;
+            let email = req.body.email;
+            let odgLice = req.body.odgLice;
+            let phone = req.body.phone;
+            business_2.default.findOne({ username: username }, (err, business) => {
+                if (err) {
+                    console.log(err);
+                }
+                else {
+                    business_2.default.collection.updateOne({ 'username': username }, { $set: { 'email': email,
+                            'odgLice': odgLice,
+                            'phone': phone
+                        } }).then(business => {
+                        res.status(200).json({ 'message': 'user updated' });
+                    }).catch(err => {
+                        res.status(400).json({ 'message': 'errorUpdate' });
+                    });
+                }
+            });
+        };
+        this.updateAcc = (req, res) => {
+            let accNum = req.body.accNum;
+            let username = req.body.username;
+            business_2.default.findOne({ username: username }, (err, business) => {
+                if (err) {
+                    console.log(err);
+                }
+                else {
+                    business_2.default.collection.updateOne({ 'username': username }, { $set: { 'accNum': accNum
+                        } }).then(business => {
+                        res.status(200).json({ 'message': 'acc updated' });
+                    }).catch(err => {
+                        res.status(400).json({ 'message': 'errorUpdateAcc' });
+                    });
+                }
+            });
+        };
+        this.updateStorage = (req, res) => {
+            let kaseL = req.body.kaseL;
+            let kaseT = req.body.kaseT;
+            let skladistaId = req.body.skladistaId;
+            let skladistaNaz = req.body.skladistaNaz;
+            let username = req.body.username;
+            business_2.default.findOne({ username: username }, (err, business) => {
+                if (err) {
+                    console.log(err);
+                }
+                else {
+                    business_2.default.collection.updateOne({ 'username': username }, { $set: { 'skladista.id': skladistaId,
+                            'skladista.naziv': skladistaNaz,
+                            'kase.lokacija': kaseL,
+                            'kase.tip': kaseT
+                        } }).then(business => {
+                        res.status(200).json({ 'message': 'storage updated' });
+                    }).catch(err => {
+                        res.status(400).json({ 'message': 'errorUpdateAcc' });
+                    });
+                }
+            });
+        };
     }
 }
 exports.BusinessController = BusinessController;

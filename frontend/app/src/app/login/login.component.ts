@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, FormGroupDirective, NgForm, Validators } from '@angular/forms';
 import { ErrorStateMatcher } from '@angular/material/core';
 import { Router } from '@angular/router';
-import { User } from 'models/user';
+import { Business } from 'models/business';
 import { BusinessService } from '../services/business.service';
 
 /** Error when invalid control is dirty, touched, or submitted. */
@@ -78,7 +78,7 @@ export class LoginComponent implements OnInit {
       return;
     }
 
-    this.businessService.login(this.username, this.password).subscribe((user: User)=>{
+    this.businessService.login(this.username, this.password).subscribe((user: Business)=>{
       if(user){
         this.loggedIn = true;
         if(user.type==-1){

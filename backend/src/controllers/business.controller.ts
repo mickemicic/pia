@@ -1,7 +1,8 @@
 import * as express from 'express'
 import business from '../models/business';
 import Business from '../models/business';
-import * as fs from 'fs'
+
+
 
 export class BusinessController{
     login = (req: express.Request, res: express.Response)=>{
@@ -67,6 +68,7 @@ export class BusinessController{
             if(err) console.log(err);
             else res.json(user);
         })
+
     }
 
     extraInfo = (req: express.Request, res: express.Response)=>{
@@ -106,4 +108,80 @@ export class BusinessController{
             }
         })
     }
+
+    update = (req: express.Request, res: express.Response)=>{
+        let username = req.body.username;
+        let email = req.body.email;
+        let odgLice = req.body.odgLice;
+        let phone = req.body.phone;
+
+        Business.findOne({username: username}, (err, business)=>{
+            if(err){ 
+                console.log(err);
+            }
+            else{
+                Business.collection.updateOne({'username': username}, {$set: 
+                    {'email' : email,
+                    'odgLice': odgLice,
+                    'phone': phone
+                }}).then(business=>{
+                    res.status(200).json({'message': 'user updated'});
+                }).catch(err=>{
+                    res.status(400).json({'message': 'errorUpdate'});
+                })
+                
+            }
+        })
+    }
+
+    updateAcc = (req: express.Request, res: express.Response)=>{
+        let accNum = req.body.accNum;
+        let username = req.body.username;
+
+        Business.findOne({username: username}, (err, business)=>{
+            if(err){ 
+                console.log(err);
+            }
+            else{
+                Business.collection.updateOne({'username': username}, {$set: 
+                    {'accNum': accNum
+                }}).then(business=>{
+                    res.status(200).json({'message': 'acc updated'});
+                }).catch(err=>{
+                    res.status(400).json({'message': 'errorUpdateAcc'});
+                })
+                
+            }
+        })
+    }
+
+
+    updateStorage = (req: express.Request, res: express.Response)=>{
+        let kaseL = req.body.kaseL;
+        let kaseT = req.body.kaseT;
+        let skladistaId = req.body.skladistaId;
+        let skladistaNaz = req.body.skladistaNaz;
+        let username = req.body.username;
+
+        Business.findOne({username: username}, (err, business)=>{
+            if(err){ 
+                console.log(err);
+            }
+            else{
+                Business.collection.updateOne({'username': username}, {$set: 
+                    {'skladista.id': skladistaId,
+                    'skladista.naziv': skladistaNaz,
+                    'kase.lokacija': kaseL,
+                    'kase.tip': kaseT
+                }}).then(business=>{
+                    res.status(200).json({'message': 'storage updated'});
+                }).catch(err=>{
+                    res.status(400).json({'message': 'errorUpdateAcc'});
+                })
+                
+            }
+        })
+    }
+
+
 }

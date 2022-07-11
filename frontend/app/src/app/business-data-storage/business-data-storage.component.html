@@ -1,0 +1,53 @@
+<app-header></app-header>
+<body style="text-align: center;">
+    <form class="example-form">
+        <table class="example-full-width" cellspacing="0">
+            <tr>
+                <th colspan="2">
+                    <h2>Складишта</h2>
+                </th>
+            </tr>
+            <tr *ngFor="let n of numSeqW">
+                <td>
+                    <mat-form-field class="example-full-width" appearance="fill">
+                        <mat-label>Складиште број {{n+1}} - Назив</mat-label>
+                        <input matInput name="skladistaNaz{{n}}" type="text" value="{{skladistaNaz[n]}}" [(ngModel)]="skladistaNaz[n]">
+                    </mat-form-field>
+                </td>
+                <td>
+                    <mat-form-field class="example-full-width" appearance="fill">
+                        <mat-label>Складиште број {{n+1}} - ИД</mat-label>
+                        <input matInput name="skladistaId{{n}}" [(ngModel)]="skladistaId[n]" type="text" value="{{skladistaId[n]}}">
+                    </mat-form-field>
+                </td>
+            </tr>
+            <tr>
+                <th colspan="2">
+                    <hr>
+                    <h2>Касе</h2>
+                </th>
+            </tr>
+            <tr *ngFor="let n of numSeq">
+                <td>
+                    <mat-form-field class="example-full-width" appearance="fill">
+                        <mat-label>Каса број {{n+1}} - Локација</mat-label>
+                        <input matInput name="kaseL{{n}}" [(ngModel)]="kaseL[n]" type="text" value="{{kaseL[n]}}">
+                    </mat-form-field>
+                </td>
+                <td>
+                    <mat-form-field class="example-full-width" appearance="fill">
+                        <mat-label>Каса број {{n+1}} - Тип</mat-label>
+                        <input matInput name="kaseT{{n}}" [(ngModel)]="kaseT[n]" type="text" value="{{kaseT[n]}}">
+                    </mat-form-field>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2" align="center">
+                    <button color="primary" mat-raised-button (click)="update()">
+                        САЧУВАЈ ПОДАТКЕ
+                    </button>
+                </td>
+            </tr>
+        </table>
+    </form>
+</body>

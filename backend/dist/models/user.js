@@ -12,8 +12,14 @@ let User = new Schema({
     password: {
         type: String
     },
-    type: {
+    name: {
         type: String
+    },
+    phone: {
+        type: Number
+    },
+    id: {
+        type: Number
     }
 });
 exports.default = mongoose_1.default.model('User', User, 'users');
