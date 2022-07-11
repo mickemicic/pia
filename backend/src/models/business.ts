@@ -50,6 +50,14 @@ let Business = new Schema({
     },
     logo:{
         type: String
+    },
+    skladista:{
+        id: Array<String>,
+        naziv: Array<String>
+    },
+    kase:{
+        lokacija: Array<String>,
+        tip: Array<String>
     }
 })
 

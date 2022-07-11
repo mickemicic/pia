@@ -73,6 +73,10 @@ class BusinessController {
             let activities = req.body.activities;
             let pdv = req.body.pdv;
             let accNum = req.body.accNum;
+            let kaseL = req.body.kaseL;
+            let kaseT = req.body.kaseT;
+            let skladistaId = req.body.skladistaId;
+            let skladistaNaz = req.body.skladistaNaz;
             business_2.default.findOne({ username: username }, (err, business) => {
                 if (err) {
                     console.log(err);
@@ -82,7 +86,11 @@ class BusinessController {
                             'activities': activities,
                             'accNum': accNum,
                             'pdv': pdv,
-                            'type': 1
+                            'type': 1,
+                            'kase.lokacija': kaseL,
+                            'kase.tip': kaseT,
+                            'skladista.id': skladistaId,
+                            'skladista.naziv': skladistaNaz
                         } }).then(business => {
                         res.status(200).json({ 'message': 'data updated' });
                     }).catch(err => {

@@ -58,13 +58,17 @@ export class BusinessService {
 
   }
 
-  extraInfo(category, activities, pdv, accNum, username){
+  extraInfo(category, activities, pdv, accNum, username, kaseL, kaseT, skladistaId, skladistaNaz){
     const data={
       category: category,
       activities: activities,
       pdv: pdv, 
       accNum: accNum,
-      username: username
+      username: username,
+      kaseL: kaseL,
+      kaseT: kaseT,
+      skladistaId: skladistaId,
+      skladistaNaz: skladistaNaz
     }
 
     return this.http.post(`${this.uri}/business/extraInfo`, data);

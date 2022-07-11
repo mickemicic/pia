@@ -17,4 +17,14 @@ export class Business{
     logo: String;
 
     restaurant: number; //0 ako nije, 1 ako jeste
+
+    skladista:{
+        id: Array<String>,
+        naziv: Array<String>
+    }
+
+    kase:{
+        lokacija: Array<String>,
+        tip: Array<String>
+    }
 }

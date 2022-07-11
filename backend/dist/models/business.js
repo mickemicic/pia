@@ -53,6 +53,14 @@ let Business = new Schema({
     },
     logo: {
         type: String
+    },
+    skladista: {
+        id: (Array),
+        naziv: (Array)
+    },
+    kase: {
+        lokacija: (Array),
+        tip: (Array)
     }
 });
 exports.default = mongoose_1.default.model('Business', Business, 'businesses');
