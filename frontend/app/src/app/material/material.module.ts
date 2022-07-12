@@ -19,6 +19,7 @@ import {MatTreeModule} from '@angular/material/tree';
 import {MatExpansionModule} from '@angular/material/expansion';
 import {MatCardModule} from '@angular/material/card';
 import {MatSlideToggleModule} from '@angular/material/slide-toggle';
+import {MatDialogModule} from '@angular/material/dialog';
 
 
 
@@ -45,6 +46,7 @@ import {MatSlideToggleModule} from '@angular/material/slide-toggle';
     MatExpansionModule,
     MatCardModule,
     MatSlideToggleModule,
+    MatDialogModule
   ],
   exports: [
     MatNativeDateModule,
@@ -67,6 +69,7 @@ import {MatSlideToggleModule} from '@angular/material/slide-toggle';
     MatExpansionModule,
     MatCardModule,
     MatSlideToggleModule,
+    MatDialogModule
   ]
 })
 

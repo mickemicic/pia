@@ -61,6 +61,9 @@ let Business = new Schema({
     kase: {
         lokacija: (Array),
         tip: (Array)
+    },
+    orderers: {
+        type: (Array)
     }
 });
 exports.default = mongoose_1.default.model('Business', Business, 'businesses');

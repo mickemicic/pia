@@ -26,6 +26,7 @@ import { InventoryComponent } from './inventory/inventory.component';
 import { ChecksComponent } from './checks/checks.component';
 import { ReportsComponent } from './reports/reports.component';
 import { OrderersAddComponent } from './orderers-add/orderers-add.component';
+import { DialogComponent } from './dialog/dialog.component';
 // import { ExampleTelInputComponent } from './ang-custom/example-tel-input/example-tel-input.component';
 
 @NgModule({
@@ -49,6 +50,7 @@ import { OrderersAddComponent } from './orderers-add/orderers-add.component';
     ChecksComponent,
     ReportsComponent,
     OrderersAddComponent,
+    DialogComponent,
     // ExampleTelInputComponent,
   ],
   imports: [
@@ -60,6 +62,9 @@ import { OrderersAddComponent } from './orderers-add/orderers-add.component';
     MaterialModule,
     FlexLayoutModule,
     ReactiveFormsModule
+  ],
+  entryComponents:[
+    DialogComponent
   ],
   providers: [],
   bootstrap: [AppComponent]

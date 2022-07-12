@@ -12,4 +12,10 @@ export class OrderersAddComponent implements OnInit {
   ngOnInit(): void {
   }
 
+
+  message:String;
+
+  search(){
+    
+  }
 }

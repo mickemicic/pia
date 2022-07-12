@@ -1,1 +1,38 @@
-<p>orderers-add works!</p>
+<app-header></app-header>
+<body style="text-align: center">
+    <h1>Како желите да додате новог наручиоца?</h1>
+    <mat-tab-group mat-align-tabs="center">
+        <mat-tab label="Претрага преко ПИБ-а">
+            <form class="example-form">
+                <table class="example-full-width" cellspacing="0">
+                    <tr>
+                        <th>
+                            <h2>
+                                Унесите ПИБ
+                            </h2>
+                        </th>
+                    </tr>
+                    <tr>
+                        <td>
+                            <mat-form-field class="example-full-width" appearance="fill">
+                                <mat-label>ПИБ</mat-label>
+                                <input matInput name="pib">
+                            </mat-form-field>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <button color="primary" mat-raised-button (click)="search()">
+                                ПРЕТРАГА
+                            </button>
+                            <mat-error>{{message}}</mat-error>
+                        </td>
+                    </tr>
+                </table>
+            </form>
+        </mat-tab>
+        <mat-tab label="Унос свих података">
+
+        </mat-tab>
+    </mat-tab-group>
+</body>
