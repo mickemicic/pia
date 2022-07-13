@@ -9,6 +9,7 @@ import { BusinessComponent } from './business/business.component';
 import { ChecksComponent } from './checks/checks.component';
 import { CustomAccControlComponent } from './custom-acc/custom-acc-control/custom-acc-control.component';
 import { CustomAccComponent } from './custom-acc/custom-acc/custom-acc.component';
+import { FacilitiesAddComponent } from './facilities-add/facilities-add.component';
 import { FacilitiesComponent } from './facilities/facilities.component';
 import { InventoryComponent } from './inventory/inventory.component';
 import { LoginComponent } from './login/login.component';
@@ -35,6 +36,7 @@ const routes: Routes = [
   {path: 'facilities', component: FacilitiesComponent},
   {path: 'checks', component: ChecksComponent},
   {path: 'reports', component: ReportsComponent},
+  {path: 'facilitiesAdd', component: FacilitiesAddComponent},
   {path: 'test', component: CustomAccControlComponent},
   {path: 'test2', component: CustomAccComponent}
 ];

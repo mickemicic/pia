@@ -7,6 +7,8 @@ const mongoose_1 = __importDefault(require("mongoose"));
 const Schema = mongoose_1.default.Schema;
 class Orderer {
 }
+class InventoryItem {
+}
 let Business = new Schema({
     username: {
         type: String
@@ -65,6 +67,9 @@ let Business = new Schema({
         tip: (Array)
     },
     orderers: {
+        type: (Array)
+    },
+    inventory: {
         type: (Array)
     }
 });

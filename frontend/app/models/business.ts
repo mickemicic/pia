@@ -1,3 +1,5 @@
+import { InventoryItem } from "src/app/facilities/facilities.component";
+
 class Orderer{
     PIB: number;
     title: String;
@@ -44,4 +46,6 @@ export class Business{
     };
 
     orderers: Array<Orderer>;
+
+    inventory: Array<InventoryItem>
 }

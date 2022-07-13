@@ -1,1 +1,84 @@
-<p>facilities-add works!</p>
+<app-header></app-header>
+<body style="text-align: center;">
+    <form class="example-form">
+        <h2>
+            Унесите податке о артиклу
+        </h2>
+        <mat-accordion>
+            <mat-expansion-panel hideToggle>
+                <mat-expansion-panel-header>
+                    <mat-panel-title>
+                        Општи подаци:
+                    </mat-panel-title>
+                </mat-expansion-panel-header >
+                <mat-form-field class="example-full-width" appearance="fill">
+                    <mat-label>Шифра артикла</mat-label>
+                    <input matInput required [(ngModel)]="code" name="code">
+                </mat-form-field>
+                <mat-form-field class="example-full-width" appearance="fill">
+                    <mat-label>Назив артикла</mat-label>
+                    <input matInput required [(ngModel)]="title" name="title">
+                </mat-form-field>
+                <mat-form-field class="example-full-width" appearance="fill">
+                    <mat-label>Јединица мере</mat-label>
+                    <input matInput required [(ngModel)]="unit" name="unit">
+                </mat-form-field>
+                <mat-form-field class="example-full-width" appearance="fill">
+                    <mat-label>Стопа пореза</mat-label>
+                    <input matInput required [(ngModel)]="tax" name="tax">
+                </mat-form-field>
+            </mat-expansion-panel>
+        </mat-accordion>
+        <br>
+        <mat-accordion>
+            <mat-expansion-panel  hideToggle>
+                <mat-expansion-panel-header>
+                    <mat-panel-title>
+                        Допунски подаци:
+                    </mat-panel-title>
+                </mat-expansion-panel-header>
+                <mat-form-field class="example-full-width" appearance="fill">
+                    <mat-label>Земља порекла</mat-label>
+                    <input matInput [(ngModel)]="origin" name="origin">
+                </mat-form-field>
+                <mat-form-field class="example-full-width" appearance="fill">
+                    <mat-label>Страни назив артикла</mat-label>
+                    <input matInput [(ngModel)]="foreignTitle" name="foreignTitle">
+                </mat-form-field>
+                <mat-form-field class="example-full-width" appearance="fill">
+                    <mat-label>Баркод број</mat-label>
+                    <input matInput [(ngModel)]="barcode" name="barcode" type="number">
+                </mat-form-field>
+                <mat-form-field class="example-full-width" appearance="fill">
+                    <mat-label>Произвођач</mat-label>
+                    <input matInput [(ngModel)]="producer" name="producer">
+                </mat-form-field>
+                <mat-form-field class="example-full-width" appearance="fill">
+                    <mat-label>Царинска тарифа</mat-label>
+                    <input matInput [(ngModel)]="customsTax" name="customsTax">
+                </mat-form-field>
+                <mat-form-field class="example-full-width" appearance="fill">
+                    <mat-label>Да ли се примењује еко такса или акцизе?</mat-label>
+                    <input matInput [(ngModel)]="ecoTax" name="ecoTax">
+                </mat-form-field>
+                <mat-form-field class="example-full-width" appearance="fill">
+                    <mat-label>Минималне жељене залихе</mat-label>
+                    <input matInput [(ngModel)]="minStock" name="minStock" type="number">
+                </mat-form-field>
+                <mat-form-field class="example-full-width" appearance="fill">
+                    <mat-label>Максималне жељене залихе</mat-label>
+                    <input matInput [(ngModel)]="maxStock" name="maxStock" type="number">
+                </mat-form-field>
+                <mat-form-field class="example-full-width" appearance="fill">
+                    <mat-label>Опис артикла</mat-label>
+                    <input matInput [(ngModel)]="description" name="description">
+                </mat-form-field>
+                <mat-form-field class="example-full-width" appearance="fill">
+                    <mat-label>Декларација</mat-label>
+                    <input matInput [(ngModel)]="declare" name="declare">
+                </mat-form-field>
+            </mat-expansion-panel>
+        </mat-accordion>
+                
+    </form>
+</body>

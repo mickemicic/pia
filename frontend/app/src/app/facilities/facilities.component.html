@@ -1,1 +1,34 @@
 <app-header></app-header>
+<body style="text-align: center;">
+    <h1>Листа артикала</h1>
+    <button mat-raised-button color="primary" onclick="location.href = 'http://localhost:4200/facilitiesAdd'" >Унос новог артикла</button>
+    <p style="padding-top: 20px;">Укупно редова: {{length}} </p>
+    <table mat-table [dataSource]="dataSource" style="width: 100%;">
+        <ng-container matColumnDef="code">
+            <th mat-header-cell *matHeaderCellDef style="text-align: center; padding-top: 20px;">Шифра артикла</th>
+            <td mat-cell *matCellDef="let element">{{element.code}}</td>
+        </ng-container>
+        <ng-container matColumnDef="title">
+            <th mat-header-cell *matHeaderCellDef style="text-align: center; padding-top: 20px;">Назив артикла</th>
+            <td mat-cell *matCellDef="let element" style="text-align: center; align-items: center; vertical-align: middle;">{{element.title}}</td>
+        </ng-container>
+        <ng-container matColumnDef="unit">
+            <th mat-header-cell *matHeaderCellDef style="text-align: center; padding-top: 20px;">Јединица мере</th>
+            <td mat-cell *matCellDef="let element">{{element.unit}}</td>
+        </ng-container>
+        <ng-container matColumnDef="tax">
+            <th mat-header-cell *matHeaderCellDef style="text-align: center; padding-top: 20px;">Стопа пореза</th>
+            <td mat-cell *matCellDef="let element">{{element.tax}}</td>
+        </ng-container>
+        <ng-container matColumnDef="producer">
+            <th mat-header-cell *matHeaderCellDef style="text-align: center; padding-top: 20px;">Произвођач</th>
+            <td mat-cell *matCellDef="let element">{{element.producer}}</td>
+        </ng-container>
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+    <mat-paginator [pageSizeOptions]="[5, 10, 20]"
+                 showFirstLastButtons 
+                 aria-label="Select page of periodic elements">
+  </mat-paginator>
+</body>

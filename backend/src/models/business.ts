@@ -14,6 +14,14 @@ class Orderer{
     phone: String;
 }
 
+class InventoryItem{
+    code: number;
+    title: String;
+    unit: String;
+    tax: number;
+    protected: String;
+}
+
 let Business = new Schema({
     username:{
         type: String
@@ -73,6 +81,9 @@ let Business = new Schema({
     },
     orderers:{
         type: Array<Orderer>
+    },
+    inventory:{
+        type: Array<InventoryItem>
     }
 })
 
