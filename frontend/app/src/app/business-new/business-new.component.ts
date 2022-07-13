@@ -95,8 +95,8 @@ export class BusinessNewComponent implements OnInit {
   numSequence(){
     this.numSeq = new Array<number>(0);      
 
-    this.kaseL = new Array<String>("");      
-    this.kaseT = new Array<String>("");  
+    this.kaseL = new Array<String>();      
+    this.kaseT = new Array<String>();  
          
     for (let index = 0; index < this.numRegister; index++) {
       this.numSeq.push(index);
@@ -109,8 +109,8 @@ export class BusinessNewComponent implements OnInit {
   numSequenceW(){
     this.numSeqW = new Array<number>(0);
 
-    this.skladistaId = new Array<String>("");      
-    this.skladistaNaz = new Array<String>(""); 
+    this.skladistaId = new Array<String>();      
+    this.skladistaNaz = new Array<String>(); 
 
     for (let index = 0; index < this.numWarehouse; index++) {
       this.numSeqW.push(index);
@@ -157,6 +157,14 @@ export class BusinessNewComponent implements OnInit {
       console.log(resp['message']);
       if(resp['message']=='data updated'){
         this.user.type = 1;
+        this.user.kase.lokacija = this.kaseL;
+        this.user.kase.tip = this.kaseT;
+        this.user.skladista.id = this.skladistaId;
+        this.user.skladista.naziv = this.skladistaNaz;
+        this.user.accNum = this.accNum;
+        this.user.activities = this.activities;
+        this.user.category = this.category;
+        
         localStorage.setItem("user", JSON.stringify(this.user));
         alert("Успешно сте додали податке");
 

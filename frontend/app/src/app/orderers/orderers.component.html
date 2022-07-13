@@ -14,9 +14,41 @@
                     </button>
                 </td>
             </tr>
-            <div *ngFor="let o of orderers">
-                {{o.title}}
-            </div>
+            
+            <tr style="text-align: center;" *ngFor="let o of orderers; let i = index">
+                <td style="padding-top: 10px;">
+                    <mat-card>
+                        <mat-card-title-group>
+                            <mat-card-title>{{o.title}}</mat-card-title>
+                            <mat-card-subtitle> 
+                                Тип предузећа: <span *ngIf="o.category=='hosp'">Угоститељ</span> 
+                                                <span *ngIf="o.category!='hosp'">Продавница</span>
+                            </mat-card-subtitle>
+                        </mat-card-title-group>
+                        <mat-card-content>
+                            Адреса: {{o.address}} <br>
+                            Одговорно лице: {{o.odgLice}} <br>
+                            Контакт телефон: +{{o.phone}} <br>
+                            <mat-form-field>
+                                <mat-label>Број дана за плаћање</mat-label>
+                                <input matInput type="number" [(ngModel)]="days[i]" name="days{{i}}">
+                            </mat-form-field>
+                            <br>
+                            <mat-form-field>
+                                <mat-label>Проценат рабата</mat-label>
+                                <input matInput type="number" [(ngModel)]="tax[i]" name="tax{{i}}">
+                            </mat-form-field>
+                        </mat-card-content>
+                        <mat-card-actions>
+                            <button color="primary" mat-raised-button (click)="updateOrderer(i)">Освежи податке о поручиоцу</button>
+                        </mat-card-actions>
+                        <mat-card-footer>
+                            <mat-error> {{messages[i]}} </mat-error>
+                        </mat-card-footer>
+                    </mat-card>    
+                </td>
+            </tr>
+            
         </table>
     </form>
 </body>

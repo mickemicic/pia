@@ -2,6 +2,18 @@ import mongoose from 'mongoose'
 
 const Schema = mongoose.Schema;
 
+class Orderer{
+    PIB: number;
+    title: String;
+    address: String;
+    category: String;
+    days: number;
+    tax: number;
+    logo: String;
+    odgLice: String;
+    phone: String;
+}
+
 let Business = new Schema({
     username:{
         type: String
@@ -60,7 +72,7 @@ let Business = new Schema({
         tip: Array<String>
     },
     orderers:{
-        type: Array<number>
+        type: Array<Orderer>
     }
 })
 

@@ -110,4 +110,27 @@ export class BusinessService {
     }
     return this.http.post(`${this.uri}/business/updateStorage`, data);
   }
+
+  searchPIB(pib){
+    const data={
+      pib: pib
+    }
+    return this.http.post(`${this.uri}/business/searchPIB`, data);
+  }
+
+  addOrderer(user, orderer){
+    const data={
+      user: user,
+      orderer: orderer
+    }
+    return this.http.post(`${this.uri}/business/addOrderer`, data);
+  }
+
+  updateOrd(orderer, user){
+    const data={
+      user: user,
+      orderer: orderer
+    }
+    return this.http.post(`${this.uri}/business/updateOrderer`, data);
+  }
 }

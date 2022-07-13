@@ -1,3 +1,16 @@
+class Orderer{
+    PIB: number;
+    title: String;
+    address: String;
+    category: String;
+    days: number;
+    tax: number;
+    logo: String;
+    odgLice: String;
+    phone: String;
+}
+
+
 export class Business{
     username: string;
     password: string;
@@ -30,5 +43,5 @@ export class Business{
         tip: Array<String>
     };
 
-    orderers: Array<number>;
+    orderers: Array<Orderer>;
 }

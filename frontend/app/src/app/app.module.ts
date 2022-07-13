@@ -27,6 +27,7 @@ import { ChecksComponent } from './checks/checks.component';
 import { ReportsComponent } from './reports/reports.component';
 import { OrderersAddComponent } from './orderers-add/orderers-add.component';
 import { DialogComponent } from './dialog/dialog.component';
+import { FacilitiesAddComponent } from './facilities-add/facilities-add.component';
 // import { ExampleTelInputComponent } from './ang-custom/example-tel-input/example-tel-input.component';
 
 @NgModule({
@@ -51,6 +52,7 @@ import { DialogComponent } from './dialog/dialog.component';
     ReportsComponent,
     OrderersAddComponent,
     DialogComponent,
+    FacilitiesAddComponent,
     // ExampleTelInputComponent,
   ],
   imports: [

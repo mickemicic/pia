@@ -9,9 +9,9 @@ export class BusinessController{
         let username = req.body.username;
         let password = req.body.password;
 
-        business.findOne({'username': username, 'password': password}, (err, user)=>{
+        business.findOne({'username': username, 'password': password}, (err, business)=>{
             if(err) console.log(err);
-            else res.json(user);
+            else res.json(business);
         })
     }
 
@@ -179,6 +179,70 @@ export class BusinessController{
                     res.status(400).json({'message': 'errorUpdateAcc'});
                 })
                 
+            }
+        })
+    }
+
+    searchPIB = (req: express.Request, res: express.Response)=>{
+        let pib = req.body.pib;
+
+        Business.findOne({'pib': pib}, (err, business)=>{
+            if(err)
+                console.log(err)
+            else
+                res.json(business)
+        })
+    }
+
+    addOrderer = (req: express.Request, res: express.Response)=>{
+        let userDef = req.body.user;
+        let orderer = req.body.orderer;
+
+        var flag = 0;
+
+        userDef.orderers.forEach((element: any) => {
+            if(element == orderer.pib)
+                flag = 1;
+        });
+
+        if(flag){
+            res.status(200).json({'message': 'existing orderer'});
+            return
+        }
+
+        Business.findOne({username: userDef.username}, (err, user)=>{
+            if(err)
+                console.log(err)
+
+            else{
+                Business.collection.updateOne({'username': userDef.username}, {$push: 
+                    {'orderers': orderer
+                }}).then(user=>{
+                    res.status(200).json({'message': 'orderer added'});
+                }).catch(err=>{
+                    res.status(400).json({'message': 'errorAddOrd'});
+                })
+            }
+
+        })
+    }
+
+    updateOrderer = (req: express.Request, res: express.Response)=>{
+        let userDef = req.body.user;
+        let orderer = req.body.orderer;
+
+        Business.findOne({'username': userDef.username}, (err, business)=>{
+            if(err){
+                console.log(err);
+            }
+            else{
+                console.log(orderer)
+                Business.collection.updateOne({'username': userDef.username, 'orderers.pib': orderer.pib}, {$set:
+                {'orderers.$.days': orderer.days, 'orderers.$.tax': orderer.tax}}).then(orderer=>{
+                    res.status(200).json({'message': 'orderer updated'});
+                }).catch(err=>{
+                    res.status(400).json({'message': 'errorUpdateOrd'});
+                })
             }
         })
     }

@@ -34,4 +34,16 @@ BusinessRouter.route('/updateStorage').post(
     (req, res)=>new BusinessController().updateStorage(req, res)
 )
 
+BusinessRouter.route('/searchPIB').post(
+    (req, res)=>new BusinessController().searchPIB(req, res)
+)
+
+BusinessRouter.route('/addOrderer').post(
+    (req, res)=>new BusinessController().addOrderer(req, res)
+)
+
+BusinessRouter.route('/updateOrderer').post(
+    (req, res)=>new BusinessController().updateOrderer(req, res)
+)
+
 export default BusinessRouter;

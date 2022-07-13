@@ -2,11 +2,88 @@
 <body style="text-align: center">
     <h1>Како желите да додате новог наручиоца?</h1>
     <mat-tab-group mat-align-tabs="center">
-        <mat-tab label="Претрага преко ПИБ-а">
+        <mat-tab label="Унос свих података">
             <form class="example-form">
                 <table class="example-full-width" cellspacing="0">
                     <tr>
-                        <th>
+                        <th style="padding-top: 10px;">
+                            <h2>
+                                Унесите податке наручиоца
+                            </h2>
+                        </th>
+                    </tr>
+                    <tr>
+                        <td>
+                            <mat-form-field class="example-full-width" appearance="fill">
+                                <mat-label>ПИБ</mat-label>
+                                <input matInput type="number" required [(ngModel)]="pibF" name="pibF">
+                            </mat-form-field>
+                        </td>
+                        <tr>
+                        <td>
+                            <mat-form-field class="example-full-width" appearance="fill">
+                                <mat-label>Назив</mat-label>
+                                <input matInput required [(ngModel)]="title" name="title">
+                            </mat-form-field>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <mat-form-field class="example-full-width" appearance="fill">
+                                <mat-label>Адреса</mat-label>
+                                <input matInput required [(ngModel)]="address" name="address">
+                            </mat-form-field>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <mat-form-field class="example-full-width" appearance="fill" >
+                                <mat-label>Категорија</mat-label>
+                                <mat-select required="" [(ngModel)]="categoryF" name="categoryF">
+                                    <mat-option value="hosp">
+                                        Угоститељ
+                                    </mat-option>
+                                    <mat-option value="store"> 
+                                        Продавница
+                                    </mat-option>
+                                </mat-select>
+                            </mat-form-field>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <mat-form-field class="example-full-width" appearance="fill">
+                                <mat-label>Одговорно лице</mat-label>
+                                <input matInput required [(ngModel)]="odgLice" name="odgLice">
+                            </mat-form-field>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <mat-form-field class="example-full-width" appearance="fill">
+                                <mat-label>Контакт телефон</mat-label>
+                                <input matInput type="number" required="" [(ngModel)]="phone" name="phone">
+                            </mat-form-field>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <button mat-raised-button color="primary" (click)="addOrd()">ДОДАЈ</button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <mat-error>{{messageF}}</mat-error>
+                        </td>
+                    </tr>
+                </table>
+            </form>
+        </mat-tab>
+        <mat-tab label="Претрага преко ПИБ-а">
+            <form class="example-form">
+                <table class="example-full-width" cellspacing="0" style="margin: 0 auto;">
+                    <tr>
+                        <th style="padding-top: 10px;">
                             <h2>
                                 Унесите ПИБ
                             </h2>
@@ -16,23 +93,38 @@
                         <td>
                             <mat-form-field class="example-full-width" appearance="fill">
                                 <mat-label>ПИБ</mat-label>
-                                <input matInput name="pib">
+                                <input matInput name="pib" [(ngModel)]="pib" type="number">
                             </mat-form-field>
                         </td>
                     </tr>
                     <tr>
-                        <td>
+                        <td style="padding-bottom: 30px;">
                             <button color="primary" mat-raised-button (click)="search()">
                                 ПРЕТРАГА
                             </button>
                             <mat-error>{{message}}</mat-error>
                         </td>
                     </tr>
+                    <tr>
+                        <mat-card *ngIf="business" style="justify-content: center;">
+                            <mat-card-title-group> 
+                                <mat-card-title> {{business.title}}</mat-card-title>
+                                <mat-card-subtitle>{{category}}</mat-card-subtitle>
+                                <img src="{{business.logo}}" mat-card-sm-image>
+                            </mat-card-title-group>
+                            <mat-card-content>
+                                +{{business.phone}}
+                            </mat-card-content>
+                            <mat-card-actions>
+                                <button color="primary" mat-raised-button (click)="addOrderer()">
+                                    ДОДАЈ У ЛИСТУ НАРУЧИОЦА
+                                </button>
+                            </mat-card-actions>
+                        </mat-card>
+                    </tr>
                 </table>
             </form>
         </mat-tab>
-        <mat-tab label="Унос свих података">
-
-        </mat-tab>
+        
     </mat-tab-group>
 </body>

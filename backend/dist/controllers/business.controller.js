@@ -11,11 +11,11 @@ class BusinessController {
         this.login = (req, res) => {
             let username = req.body.username;
             let password = req.body.password;
-            business_1.default.findOne({ 'username': username, 'password': password }, (err, user) => {
+            business_1.default.findOne({ 'username': username, 'password': password }, (err, business) => {
                 if (err)
                     console.log(err);
                 else
-                    res.json(user);
+                    res.json(business);
             });
         };
         this.register = (req, res) => {
@@ -156,6 +156,57 @@ class BusinessController {
                         res.status(200).json({ 'message': 'storage updated' });
                     }).catch(err => {
                         res.status(400).json({ 'message': 'errorUpdateAcc' });
+                    });
+                }
+            });
+        };
+        this.searchPIB = (req, res) => {
+            let pib = req.body.pib;
+            business_2.default.findOne({ 'pib': pib }, (err, business) => {
+                if (err)
+                    console.log(err);
+                else
+                    res.json(business);
+            });
+        };
+        this.addOrderer = (req, res) => {
+            let userDef = req.body.user;
+            let orderer = req.body.orderer;
+            var flag = 0;
+            userDef.orderers.forEach((element) => {
+                if (element == orderer.pib)
+                    flag = 1;
+            });
+            if (flag) {
+                res.status(200).json({ 'message': 'existing orderer' });
+                return;
+            }
+            business_2.default.findOne({ username: userDef.username }, (err, user) => {
+                if (err)
+                    console.log(err);
+                else {
+                    business_2.default.collection.updateOne({ 'username': userDef.username }, { $push: { 'orderers': orderer
+                        } }).then(user => {
+                        res.status(200).json({ 'message': 'orderer added' });
+                    }).catch(err => {
+                        res.status(400).json({ 'message': 'errorAddOrd' });
+                    });
+                }
+            });
+        };
+        this.updateOrderer = (req, res) => {
+            let userDef = req.body.user;
+            let orderer = req.body.orderer;
+            business_2.default.findOne({ 'username': userDef.username }, (err, business) => {
+                if (err) {
+                    console.log(err);
+                }
+                else {
+                    console.log(orderer);
+                    business_2.default.collection.updateOne({ 'username': userDef.username, 'orderers.pib': orderer.pib }, { $set: { 'orderers.$.days': orderer.days, 'orderers.$.tax': orderer.tax } }).then(orderer => {
+                        res.status(200).json({ 'message': 'orderer updated' });
+                    }).catch(err => {
+                        res.status(400).json({ 'message': 'errorUpdateOrd' });
                     });
                 }
             });
