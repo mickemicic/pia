@@ -46,4 +46,12 @@ BusinessRouter.route('/updateOrderer').post(
     (req, res)=>new BusinessController().updateOrderer(req, res)
 )
 
+BusinessRouter.route('/addItem').post(
+    (req, res)=>new BusinessController().addItem(req, res)
+)
+
+BusinessRouter.route('/eraseItem').post(
+    (req, res)=>new BusinessController().eraseItem(req, res)
+)
+
 export default BusinessRouter;

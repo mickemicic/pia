@@ -17,5 +17,7 @@ BusinessRouter.route('/updateStorage').post((req, res) => new Business_controlle
 BusinessRouter.route('/searchPIB').post((req, res) => new Business_controller_1.BusinessController().searchPIB(req, res));
 BusinessRouter.route('/addOrderer').post((req, res) => new Business_controller_1.BusinessController().addOrderer(req, res));
 BusinessRouter.route('/updateOrderer').post((req, res) => new Business_controller_1.BusinessController().updateOrderer(req, res));
+BusinessRouter.route('/addItem').post((req, res) => new Business_controller_1.BusinessController().addItem(req, res));
+BusinessRouter.route('/eraseItem').post((req, res) => new Business_controller_1.BusinessController().eraseItem(req, res));
 exports.default = BusinessRouter;
 //# sourceMappingURL=business.routes.js.map

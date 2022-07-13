@@ -3,9 +3,12 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.BusinessController = void 0;
+exports.BusinessController = exports.Inventory = void 0;
 const business_1 = __importDefault(require("../models/business"));
 const business_2 = __importDefault(require("../models/business"));
+class Inventory {
+}
+exports.Inventory = Inventory;
 class BusinessController {
     constructor() {
         this.login = (req, res) => {
@@ -209,6 +212,107 @@ class BusinessController {
                         res.status(400).json({ 'message': 'errorUpdateOrd' });
                     });
                 }
+            });
+        };
+        this.addItem = (req, res) => {
+            let code = req.body.code;
+            let title = req.body.title;
+            let unit = req.body.unit;
+            let tax = req.body.tax;
+            let producer = req.body.producer;
+            let origin = req.body.origin;
+            let foreignTitle = req.body.foreignTitle;
+            let barcode = req.body.barcode;
+            let customsTax = req.body.customsTax;
+            let ecoTax = req.body.ecoTax;
+            let minStock = req.body.minStock;
+            let maxStock = req.body.maxStock;
+            let description = req.body.description;
+            let declare = req.body.declare;
+            let getPrice = req.body.getPrice;
+            let sellPrice = req.body.sellPrice;
+            let lager = req.body.lager;
+            let minStockW = req.body.minStockW;
+            let maxStockW = req.body.maxStockW;
+            let logo = req.body.logo;
+            let userDef = req.body.user;
+            var flag = 0;
+            userDef.inventory.forEach((element) => {
+                if (element.code == code)
+                    flag = 1;
+            });
+            if (flag) {
+                res.status(200).json({ 'message': 'existing item' });
+                return;
+            }
+            var inventory = new Inventory();
+            console.log(inventory);
+            inventory.code = code;
+            inventory.title = title;
+            inventory.unit = unit;
+            inventory.tax = tax;
+            inventory.producer = producer;
+            inventory.origin = origin;
+            inventory.foreignTitle = foreignTitle;
+            inventory.barcode = barcode;
+            inventory.customsTax = customsTax;
+            inventory.ecoTax = ecoTax;
+            inventory.minStock = minStock;
+            inventory.maxStock = maxStock;
+            inventory.description = description;
+            inventory.declare = declare;
+            inventory.getPrice = getPrice;
+            inventory.sellPrice = sellPrice;
+            inventory.lager = lager;
+            inventory.minStockW = minStockW;
+            inventory.maxStockW = maxStockW;
+            inventory.logo = logo;
+            business_2.default.findOne({ 'username': userDef.username }, (err, user) => {
+                if (err)
+                    console.log(err);
+                else {
+                    business_2.default.collection.updateOne({ 'username': userDef.username }, { $push: {
+                            'inventory': inventory
+                            // 'inventory.code': code,
+                            // 'inventory.title': title,
+                            // 'inventory.unit': unit,
+                            // 'inventory.tax': tax,
+                            // 'inventory.producer': producer,
+                            // 'inventory.origin': origin,
+                            // 'inventory.foreignTitle': foreignTitle,
+                            // 'inventory.barcode': barcode,
+                            // 'inventory.customsTax': customsTax,
+                            // 'inventory.ecoTax': ecoTax,
+                            // 'inventory.minStock': minStock,
+                            // 'inventory.maxStock': maxStock,
+                            // 'inventory.description': description,
+                            // 'inventory.declare': declare,
+                            // 'inventory.getPrice': getPrice,
+                            // 'inventory.sellPrice': sellPrice,
+                            // 'inventory.lager': lager,
+                            // 'inventory.minStockW': minStockW,
+                            // 'inventory.maxStockW': maxStockW,
+                            // 'inventory.logo': logo,
+                        }
+                    }).then(user => {
+                        res.status(200).json({ 'message': 'item added' });
+                    }).catch(err => {
+                        res.status(400).json({ 'message': 'errorAddItem' });
+                    });
+                }
+            });
+        };
+        this.eraseItem = (req, res) => {
+            let item = req.body.item;
+            let username = req.body.username;
+            business_2.default.collection.updateOne({ 'username': username }, {
+                $pull: {
+                    inventory: { 'code': item.code }
+                }
+            }).then(item => {
+                res.status(200).json({ 'message': 'item removed' });
+            }).catch(err => {
+                res.status(400).json({ 'message': 'errorRemoveItem' });
             });
         };
     }

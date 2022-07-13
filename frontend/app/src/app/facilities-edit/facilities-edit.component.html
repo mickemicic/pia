@@ -1,3 +1,4 @@
+<app-header></app-header>
 <body style="text-align: center;">
     <form class="example-form">
         <h2>
@@ -56,9 +57,11 @@
                     <mat-label>Царинска тарифа</mat-label>
                     <input matInput [(ngModel)]="customsTax" name="customsTax">
                 </mat-form-field>
-                <mat-checkbox [(ngModel)]="ecoTax" name="ecoTax" color="primary"> Да ли се примењује еко такса или акцизе?</mat-checkbox>
-                <br>
-                <br>
+               
+                   <mat-checkbox [(ngModel)]="ecoTax" name="ecoTax" color="primary"> Да ли се примењује еко такса или акцизе?</mat-checkbox>
+                    <br>
+                    <br>
+
                 <mat-form-field class="example-full-width" appearance="fill">
                     <mat-label>Минималне жељене залихе</mat-label>
                     <input matInput [(ngModel)]="minStock" name="minStock" type="number">
@@ -85,30 +88,32 @@
                         Цене и стање робе
                     </mat-panel-title>
                 </mat-expansion-panel-header>
-                <span *ngFor="let n of skladistaId; let i = index">
-                    <h3>Складиште: <b>{{skladistaNaz[i]}}</b></h3>
-                    <mat-form-field>
-                        <mat-label>Набавна цена</mat-label>
-                        <input matInput [(ngModel)]="getPrice[i]" name="getPrice{{n}}">
-                    </mat-form-field>
-                    <mat-form-field>
-                        <mat-label>Продајна цена</mat-label>
-                        <input matInput [(ngModel)]="sellPrice[i]" name="sellPrice{{n}}">
-                    </mat-form-field>
-                    <mat-form-field>
-                        <mat-label>На лагеру</mat-label>
-                        <input matInput [(ngModel)]="lager[i]" name="lager{{n}}">
-                    </mat-form-field>
-                    <mat-form-field>
-                        <mat-label>Минимална жељена количина</mat-label>
-                        <input matInput [(ngModel)]="minStockW[i]" name="minStockW{{n}}">
-                    </mat-form-field>
-                    <mat-form-field>
-                        <mat-label>Минимална жељена количина</mat-label>
-                        <input matInput [(ngModel)]="maxStockW[i]" name="maxStockW{{n}}">
-                    </mat-form-field>
-                    <hr>
-                </span>
+                <span *ngIf="skladistaId">
+                    <span *ngFor="let n of skladistaId; let i = index">
+                        <h3>Складиште: <b>{{skladistaNaz[i]}}</b></h3>
+                        <mat-form-field>
+                            <mat-label>Набавна цена</mat-label>
+                            <input matInput [(ngModel)]="getPrice[i]" name="getPrice{{n}}">
+                        </mat-form-field>
+                        <mat-form-field>
+                            <mat-label>Продајна цена</mat-label>
+                            <input matInput [(ngModel)]="sellPrice[i]" name="sellPrice{{n}}">
+                        </mat-form-field>
+                        <mat-form-field>
+                            <mat-label>На лагеру</mat-label>
+                            <input matInput [(ngModel)]="lager[i]" name="lager{{n}}">
+                        </mat-form-field>
+                        <mat-form-field>
+                            <mat-label>Минимална жељена количина</mat-label>
+                            <input matInput [(ngModel)]="minStockW[i]" name="minStockW{{n}}">
+                        </mat-form-field>
+                        <mat-form-field>
+                            <mat-label>Минимална жељена количина</mat-label>
+                            <input matInput [(ngModel)]="maxStockW[i]" name="maxStockW{{n}}">
+                        </mat-form-field>
+                        <hr>
+                    </span>
+            </span>
             </mat-expansion-panel>
         </mat-accordion>
         <br>
@@ -122,7 +127,7 @@
         
         <br>
         <br>
-        <button mat-raised-button color="primary" (click)="addItem()">САЧУВАЈ</button>
+        <button mat-raised-button color="primary" (click)="updateItem()">САЧУВАЈ</button>
         <mat-error>{{message}}</mat-error>
     </form>
 </body>

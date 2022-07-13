@@ -133,4 +133,41 @@ export class BusinessService {
     }
     return this.http.post(`${this.uri}/business/updateOrderer`, data);
   }
+
+  addItem(code, title, unit, tax, producer, origin, foreignTitle,
+    barcode, customsTax, ecoTax, minStock, maxStock, description, declare,
+    getPrice, sellPrice, lager, minStockW, maxStockW, logo, user){
+      const data={
+        code: code,
+        title: title,
+        unit:unit,
+        tax:tax,
+        producer:producer,
+        origin:origin,
+        foreignTitle:foreignTitle,
+        barcode:barcode,
+        customsTax:customsTax,
+        ecoTax:ecoTax,
+        minStock:minStock,
+        maxStock:maxStock,
+        description:description,
+        declare:declare,
+        getPrice:getPrice,
+        sellPrice:sellPrice,
+        lager:lager,
+        minStockW:minStockW,
+        maxStockW:maxStockW,
+        logo: logo,
+        user: user
+      }
+      return this.http.post(`${this.uri}/business/addItem`, data)
+  }
+
+  erase(item, username){
+    const data={
+      item: item,
+      username: username
+    }
+    return this.http.post(`${this.uri}/business/eraseItem`, data)
+  }
 }

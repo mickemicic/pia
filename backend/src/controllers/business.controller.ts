@@ -3,6 +3,31 @@ import business from '../models/business';
 import Business from '../models/business';
 
 
+export class Inventory{
+    code: number;
+    title: string;
+    unit: string;
+    tax: number;
+    
+    producer: string;
+    origin: String;
+    foreignTitle: String;
+    barcode: number;
+    customsTax: String;
+    ecoTax: String;
+    minStock: number;
+    maxStock: number;
+    description: String;
+    declare: String;
+    
+    getPrice: Array<number>;
+    sellPrice: Array<number>;
+    lager: Array<number>;
+    minStockW: Array<number>;
+    maxStockW: Array<number>;
+  
+    logo:string;
+}
 
 export class BusinessController{
     login = (req: express.Request, res: express.Response)=>{
@@ -245,6 +270,124 @@ export class BusinessController{
                 })
             }
         })
+    }
+
+
+    addItem = (req: express.Request, res: express.Response)=>{
+        let code = req.body.code;
+        let title= req.body. title;
+        let unit= req.body.unit;
+        let tax= req.body.tax;
+        let producer= req.body.producer;
+        let origin= req.body.origin;
+        let foreignTitle= req.body.foreignTitle;
+        let barcode= req.body.barcode;
+        let customsTax= req.body.customsTax;
+        let ecoTax= req.body.ecoTax;
+        let minStock= req.body.minStock;
+        let  maxStock= req.body.maxStock;
+        let description= req.body.description;
+        let declare= req.body.declare;
+        let getPrice= req.body.getPrice;
+        let sellPrice= req.body.sellPrice;
+        let lager= req.body.lager;
+        let minStockW= req.body.minStockW;
+        let maxStockW= req.body.maxStockW;
+        let logo = req.body.logo;
+        let userDef = req.body.user;
+
+        var flag = 0;
+
+        userDef.inventory.forEach((element: any)=>{
+        if(element.code == code)
+            flag = 1;
+        })
+
+        if(flag){
+            res.status(200).json({'message': 'existing item'});
+            return
+        }
+
+        var inventory = new Inventory();
+
+        console.log(inventory)
+
+        inventory.code = code
+        inventory.title = title
+        inventory.unit = unit
+        inventory.tax = tax
+        inventory.producer = producer
+        inventory.origin = origin
+        inventory.foreignTitle = foreignTitle
+        inventory.barcode = barcode
+        inventory.customsTax = customsTax
+        inventory.ecoTax = ecoTax
+        inventory.minStock = minStock
+        inventory.maxStock = maxStock
+        inventory.description = description
+        inventory.declare = declare
+        inventory.getPrice = getPrice
+        inventory.sellPrice = sellPrice
+        inventory.lager = lager
+        inventory.minStockW = minStockW
+        inventory.maxStockW = maxStockW
+        inventory.logo = logo
+
+        Business.findOne({'username':userDef.username}, (err, user)=>{
+            if(err)
+                console.log(err)
+            else{
+                Business.collection.updateOne({'username': userDef.username}, {$push:
+                    {
+
+                        'inventory': inventory
+                        // 'inventory.code': code,
+                        // 'inventory.title': title,
+                        // 'inventory.unit': unit,
+                        // 'inventory.tax': tax,
+                        // 'inventory.producer': producer,
+                        // 'inventory.origin': origin,
+                        // 'inventory.foreignTitle': foreignTitle,
+                        // 'inventory.barcode': barcode,
+                        // 'inventory.customsTax': customsTax,
+                        // 'inventory.ecoTax': ecoTax,
+                        // 'inventory.minStock': minStock,
+                        // 'inventory.maxStock': maxStock,
+                        // 'inventory.description': description,
+                        // 'inventory.declare': declare,
+                        // 'inventory.getPrice': getPrice,
+                        // 'inventory.sellPrice': sellPrice,
+                        // 'inventory.lager': lager,
+                        // 'inventory.minStockW': minStockW,
+                        // 'inventory.maxStockW': maxStockW,
+                        // 'inventory.logo': logo,
+                    }
+                }).then(user=>{
+                    res.status(200).json({'message': 'item added'});
+                }).catch(err=>{
+                    res.status(400).json({'message': 'errorAddItem'});
+                })
+            }
+
+        })
+
+    }
+
+
+    eraseItem = (req: express.Request, res: express.Response)=>{
+        let item = req.body.item;
+        let username = req.body.username;
+
+        Business.collection.updateOne({'username': username},{
+            $pull:{
+                inventory : {'code': item.code}
+            }
+        }).then(item=>{
+            res.status(200).json({'message': 'item removed'});
+        }).catch(err=>{
+            res.status(400).json({'message': 'errorRemoveItem'});
+        })
+
     }
 
 

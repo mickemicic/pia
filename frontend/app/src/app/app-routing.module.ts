@@ -10,6 +10,7 @@ import { ChecksComponent } from './checks/checks.component';
 import { CustomAccControlComponent } from './custom-acc/custom-acc-control/custom-acc-control.component';
 import { CustomAccComponent } from './custom-acc/custom-acc/custom-acc.component';
 import { FacilitiesAddComponent } from './facilities-add/facilities-add.component';
+import { FacilitiesEditComponent } from './facilities-edit/facilities-edit.component';
 import { FacilitiesComponent } from './facilities/facilities.component';
 import { InventoryComponent } from './inventory/inventory.component';
 import { LoginComponent } from './login/login.component';
@@ -37,6 +38,7 @@ const routes: Routes = [
   {path: 'checks', component: ChecksComponent},
   {path: 'reports', component: ReportsComponent},
   {path: 'facilitiesAdd', component: FacilitiesAddComponent},
+  {path: 'itemEdit', component: FacilitiesEditComponent},
   {path: 'test', component: CustomAccControlComponent},
   {path: 'test2', component: CustomAccComponent}
 ];
