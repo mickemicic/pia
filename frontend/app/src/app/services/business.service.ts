@@ -170,4 +170,38 @@ export class BusinessService {
     }
     return this.http.post(`${this.uri}/business/eraseItem`, data)
   }
+
+  addCategory(username, element, category){
+    const data={
+      username: username,
+      element: element,
+      category: category
+    }
+    return this.http.post(`${this.uri}/business/addCategory`, data)
+  }
+
+
+  addTab(name, user){
+    const data={
+      user: user,
+      name: name
+    }
+    return this.http.post(`${this.uri}/business/addTab`, data)
+  }
+  
+  removeTab(index, user){
+    const data={
+      user: user,
+      index: index
+    }
+    return this.http.post(`${this.uri}/business/removeTab`, data)
+  }
+
+  // getItems(user, skladiste){
+  //   const data={
+  //     user:user,
+  //     skladiste: skladiste
+  //   }
+  //   return this.http.post(`${this.uri}/business/getItems`, data)
+  // }
 }

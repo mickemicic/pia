@@ -315,6 +315,71 @@ class BusinessController {
                 res.status(400).json({ 'message': 'errorRemoveItem' });
             });
         };
+        this.addCategory = (req, res) => {
+            let username = req.body.username;
+            let element = req.body.element;
+            let category = req.body.category;
+            var c;
+            switch (category) {
+                case ("пиће"):
+                    c = "drink";
+                    break;
+                case ("храна"):
+                    c = "food";
+                    break;
+                case ("кетеринг"):
+                    c = "catering";
+                    break;
+            }
+            business_2.default.collection.updateOne({ 'username': username, 'inventory.code': element.code }, {
+                $set: {
+                    'inventory.$.category': c
+                }
+            }).then(orderer => {
+                res.status(200).json({ 'message': 'category updated' });
+            }).catch(err => {
+                res.status(400).json({ 'message': 'errorUpdateCat' });
+            });
+        };
+        this.addTab = (req, res) => {
+            let userDef = req.body.user;
+            let name = req.body.name;
+            business_2.default.findOne({ 'username': userDef.username }, (err, user) => {
+                if (err)
+                    console.log(err);
+                else {
+                    business_2.default.collection.updateOne({ 'username': userDef.username }, { $push: {
+                            'tabs': name
+                        }
+                    }).then(ord => {
+                        res.status(200).json({ 'message': 'tab added' });
+                    }).catch(err => {
+                        res.status(400).json({ 'message': 'errorAddTab' });
+                    });
+                }
+            });
+        };
+        this.removeTab = (req, res) => {
+            let userDef = req.body.user;
+            let index = req.body.index;
+            business_2.default.collection.updateOne({ 'username': userDef.username }, { $pull: {
+                    'tabs': index
+                }
+            }).then(item => {
+                res.status(200).json({ 'message': 'tab removed' });
+            }).catch(err => {
+                res.status(400).json({ 'message': 'errorRemoveTab' });
+            });
+        };
+        // getItems = (req: express.Request, res: express.Response)=>{
+        //     let userDef = req.body.user;
+        //     let id = req.body.skladiste;
+        //     Business.collection.find({'username': userDef.username, 'skladista.id' : id}).toArray(function(err, items){
+        //         if (err) console.log(err)
+        //         else 
+        //             res.json(items);
+        //     })
+        // }
     }
 }
 exports.BusinessController = BusinessController;

@@ -19,5 +19,11 @@ BusinessRouter.route('/addOrderer').post((req, res) => new Business_controller_1
 BusinessRouter.route('/updateOrderer').post((req, res) => new Business_controller_1.BusinessController().updateOrderer(req, res));
 BusinessRouter.route('/addItem').post((req, res) => new Business_controller_1.BusinessController().addItem(req, res));
 BusinessRouter.route('/eraseItem').post((req, res) => new Business_controller_1.BusinessController().eraseItem(req, res));
+BusinessRouter.route('/addCategory').post((req, res) => new Business_controller_1.BusinessController().addCategory(req, res));
+BusinessRouter.route('/addTab').post((req, res) => new Business_controller_1.BusinessController().addTab(req, res));
+BusinessRouter.route('/removeTab').post((req, res) => new Business_controller_1.BusinessController().removeTab(req, res));
+// BusinessRouter.route('/getItems').post(
+//     (req, res)=>new BusinessController().getItems(req, res)
+// )
 exports.default = BusinessRouter;
 //# sourceMappingURL=business.routes.js.map

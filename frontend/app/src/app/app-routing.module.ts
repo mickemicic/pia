@@ -18,6 +18,7 @@ import { OrderersAddComponent } from './orderers-add/orderers-add.component';
 import { OrderersComponent } from './orderers/orderers.component';
 import { RegisterComponent } from './register/register.component';
 import { ReportsComponent } from './reports/reports.component';
+import { TablesComponent } from './tables/tables.component';
 import { UserComponent } from './user/user.component';
 
 const routes: Routes = [
@@ -39,6 +40,7 @@ const routes: Routes = [
   {path: 'reports', component: ReportsComponent},
   {path: 'facilitiesAdd', component: FacilitiesAddComponent},
   {path: 'itemEdit', component: FacilitiesEditComponent},
+  {path: 'tables', component: TablesComponent},
   {path: 'test', component: CustomAccControlComponent},
   {path: 'test2', component: CustomAccComponent}
 ];

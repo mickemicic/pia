@@ -1,0 +1,22 @@
+<app-header></app-header>
+<body style="text-align: center;">
+    
+    <mat-form-field appearance="fill">
+        <mat-label>Назив новог распореда</mat-label>
+        <input matInput [(ngModel)]="title">
+    </mat-form-field><br>
+    <button mat-raised-button color="primary" (click)="addTab(title)">Додај нови распоред</button>
+    <mat-tab-group>
+        <mat-tab *ngFor="let tab of tabs; let index = index" [label]="tab">
+            
+            <div class="contaier">
+                
+            </div>
+
+
+            <button mat-raised-button class="example-delete-tab-button" (click)="removeTab(index)">
+            Delete Tab
+            </button>
+        </mat-tab>
+    </mat-tab-group>
+</body>

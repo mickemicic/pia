@@ -65,7 +65,7 @@ export class FacilitiesComponent implements AfterViewInit {
   erase(item){
     let dialogRef = this.dialog.open(DialogComponent);
       dialogRef.afterClosed().subscribe(res=>{
-        if(res){
+        if(res == true){
           this.service.erase(item, this.user.username).subscribe((resp=>{
             if(resp['message']=='item removed'){
               this.service.getUserPIB(this.user.pib).subscribe((res: Business)=>{
@@ -96,7 +96,8 @@ export interface InventoryItem {
   title: string;
   unit: string;
   tax: number;
-  producer: string
+  producer: string,
+  sellPrice: number
 }
 
 

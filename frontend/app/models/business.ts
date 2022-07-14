@@ -48,4 +48,6 @@ export class Business{
     orderers: Array<Orderer>;
 
     inventory: Array<InventoryItem>
+
+    tabs: Array<string>
 }

@@ -147,7 +147,7 @@ export class FacilitiesAddComponent implements OnInit {
           this.service.getUserPIB(this.user.pib).subscribe((res: Business)=>{
             this.user = res})
             localStorage.setItem("user", JSON.stringify(this.user))
-            this.router.navigate(['facilities'])
+            this.router.navigate(['business'])
         }
         else if(resp['message']=='existing item'){
           this.message = "Већ постоји артикал са унетом шифром."

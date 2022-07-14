@@ -54,7 +54,7 @@
           <span>Распоред артикала</span>
         </button>
       </span>
-      <span *ngIf="user!=null && user.type==1 && user.restaurant==1">
+      <span *ngIf="user!=null && user.type==1 && user.category=='hosp'" onclick="location.href = 'http://localhost:4200/tables'">
         <button mat-menu-item>
           <span>Распоред столова</span>
         </button>

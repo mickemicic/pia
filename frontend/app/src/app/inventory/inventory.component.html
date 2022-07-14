@@ -1,1 +1,47 @@
-<p>inventory works!</p>
+<app-header></app-header>
+<body style="text-align: center;">
+    <mat-selection-list multiple="false">
+        <mat-list-option value="drinks" (click)="check('пиће')">
+            Пиће
+        </mat-list-option>
+        <mat-list-option value="food" (click)="check('храна')">
+            Храна
+        </mat-list-option>
+        <mat-list-option value="catering" (click)="check('кетеринг')">
+            Кетеринг
+        </mat-list-option>
+    </mat-selection-list>
+    <h2>{{message}}</h2>
+    <mat-form-field *ngIf="show">
+        <mat-label>Назив артикла</mat-label>
+        <input matInput [(ngModel)]="query" id="filter">
+    </mat-form-field>
+    <table *ngIf="show" mat-table [dataSource]="dataSource" style="width: 100%;" >
+        <ng-container matColumnDef="code">
+            <th mat-header-cell *matHeaderCellDef style="text-align: center; padding-top: 20px;">Шифра артикла</th>
+            <td mat-cell *matCellDef="let element">{{element.code}}</td>
+        </ng-container>
+        <ng-container matColumnDef="title">
+            <th mat-header-cell *matHeaderCellDef style="text-align: center; padding-top: 20px;">Назив артикла</th>
+            <td mat-cell *matCellDef="let element" style="text-align: center; align-items: center; vertical-align: middle;">{{element.title}}</td>
+        </ng-container>
+        <ng-container matColumnDef="unit">
+            <th mat-header-cell *matHeaderCellDef style="text-align: center; padding-top: 20px;">Јединица мере</th>
+            <td mat-cell *matCellDef="let element">{{element.unit}}</td>
+        </ng-container>
+        <ng-container matColumnDef="tax">
+            <th mat-header-cell *matHeaderCellDef style="text-align: center; padding-top: 20px;">Стопа пореза</th>
+            <td mat-cell *matCellDef="let element">{{element.tax}}</td>
+        </ng-container>
+        <ng-container matColumnDef="producer">
+            <th mat-header-cell *matHeaderCellDef style="text-align: center; padding-top: 20px;">Произвођач</th>
+            <td mat-cell *matCellDef="let element">{{element.producer}}</td>
+        </ng-container>
+        <ng-container matColumnDef="add">
+            <th mat-header-cell *matHeaderCellDef></th>
+            <td mat-cell *matCellDef="let element"><button mat-raised-button (click)="add(element)" [disabled]="element.category" >Додај</button></td>
+        </ng-container>
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+</body>

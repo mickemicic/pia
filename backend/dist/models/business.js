@@ -71,6 +71,9 @@ let Business = new Schema({
     },
     inventory: {
         type: (Array)
+    },
+    tabs: {
+        type: (Array)
     }
 });
 exports.default = mongoose_1.default.model('Business', Business, 'businesses');

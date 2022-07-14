@@ -1,1 +1,73 @@
-<p>checks works!</p>
+<app-header></app-header>
+<body style="text-align: center;">
+    <mat-form-field>
+        <mat-select [(ngModel)]="skladiste" (selectionChange)="getWItems()">
+            <mat-option *ngFor="let s of skladistaId; let index = index" value="{{index}}">
+                {{s}} - {{skladistaNaz[index]}}
+            </mat-option>
+        </mat-select>
+    </mat-form-field>
+    <br>
+    <form class="example-form">
+        <table class="example-full-width" cellspacing="0" *ngIf="show">
+            <tr>
+                <th><h3>Назив артикла</h3></th>
+                <th><h3>Цена</h3></th>
+                <th><h3>Мера</h3></th>
+            </tr>
+            <tr *ngFor="let n of items; let index = index">
+                <td>
+                    {{n.title}}
+                </td>
+                <td>
+                    {{n.sellPrice}}
+                </td>
+                <td>
+                    {{n.unit}}
+                </td>
+                <td>
+                    <mat-form-field>
+                        <mat-label>Количина траженог артикла</mat-label>
+                        <input type="number" matInput [(ngModel)]="quant[index]" name="quant{{index}}">
+                    </mat-form-field>
+                    <mat-error>{{messages[index]}}</mat-error>
+                </td>
+                <td>
+                    <button mat-raised-button  color="primary" (click)="addToCheck(n, index)">Додај на рачун</button>
+                </td>
+            </tr>
+        </table>
+        <br>
+        <table class="example-full-width" cellspacing="0" *ngIf="showC">
+            <tr>
+                <th>
+                    <h3>Назив артикла</h3>
+                </th>
+                <th>
+                    <h3>Количина артикла</h3>
+                </th>
+                <th>
+                    <h3>Укупна цена</h3>
+                </th>
+            </tr>
+            <tr *ngFor="let n of check; let index = index">
+                <td>
+                    {{n.title}}
+                </td>
+                <td>
+                    {{n.count}}
+                </td>
+                <td>
+                    {{prices[index]}}
+                </td>
+            </tr>
+            <tr>
+                <td></td>
+                <td></td>
+                <td>
+                    <b>{{sumPr}}</b>
+                </td>
+            </tr>
+        </table>
+    </form>
+</body>

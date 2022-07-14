@@ -84,6 +84,9 @@ let Business = new Schema({
     },
     inventory:{
         type: Array<InventoryItem>
+    },
+    tabs:{
+        type:  Array<String>
     }
 })
 

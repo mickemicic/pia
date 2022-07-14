@@ -377,6 +377,7 @@ export class BusinessController{
     eraseItem = (req: express.Request, res: express.Response)=>{
         let item = req.body.item;
         let username = req.body.username;
+        
 
         Business.collection.updateOne({'username': username},{
             $pull:{
@@ -390,5 +391,87 @@ export class BusinessController{
 
     }
 
+
+    addCategory = (req: express.Request, res: express.Response)=>{
+        let username = req.body.username;
+        let element = req.body.element;
+        let category = req.body.category;
+
+        var c;
+
+        switch(category){
+            case("пиће"):
+                c = "drink"
+            break;
+            case("храна"):
+                c = "food"
+            break;
+            case("кетеринг"):
+                c = "catering"
+            break;
+        }
+
+        Business.collection.updateOne({'username': username, 'inventory.code': element.code},{
+            $set:{
+                'inventory.$.category': c
+            }}).then(orderer=>{
+                res.status(200).json({'message': 'category updated'});
+            }).catch(err=>{
+                res.status(400).json({'message': 'errorUpdateCat'});
+            })
+    }
+
+
+
+    addTab = (req: express.Request, res: express.Response)=>{
+        let userDef = req.body.user;
+        let name = req.body.name;
+
+
+        Business.findOne({'username':userDef.username}, (err, user)=>{
+            if(err)
+                console.log(err)
+            else{
+                Business.collection.updateOne({'username': userDef.username}, {$push:
+                    {
+                        'tabs': name
+                    }
+                }).then(ord=>{
+                        res.status(200).json({'message': 'tab added'});
+                }).catch(err=>{
+                        res.status(400).json({'message': 'errorAddTab'});
+                })
+            }
+        })
+    }
+
+
+    removeTab = (req: express.Request, res: express.Response)=>{
+        let userDef = req.body.user;
+        let index = req.body.index;
+
+        Business.collection.updateOne({'username': userDef.username},{$pull:
+            {
+                 'tabs': index
+            }
+        }).then(item=>{
+            res.status(200).json({'message': 'tab removed'});
+        }).catch(err=>{
+            res.status(400).json({'message': 'errorRemoveTab'});
+        })
+    }
+
+
+    // getItems = (req: express.Request, res: express.Response)=>{
+    //     let userDef = req.body.user;
+    //     let id = req.body.skladiste;
+
+    //     Business.collection.find({'username': userDef.username, 'skladista.id' : id}).toArray(function(err, items){
+    //         if (err) console.log(err)
+    //         else 
+    //             res.json(items);
+
+    //     })
+    // }
 
 }

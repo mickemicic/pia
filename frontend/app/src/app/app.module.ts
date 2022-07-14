@@ -29,6 +29,7 @@ import { OrderersAddComponent } from './orderers-add/orderers-add.component';
 import { DialogComponent } from './dialog/dialog.component';
 import { FacilitiesAddComponent } from './facilities-add/facilities-add.component';
 import { FacilitiesEditComponent } from './facilities-edit/facilities-edit.component';
+import { TablesComponent } from './tables/tables.component';
 // import { ExampleTelInputComponent } from './ang-custom/example-tel-input/example-tel-input.component';
 
 @NgModule({
@@ -54,7 +55,8 @@ import { FacilitiesEditComponent } from './facilities-edit/facilities-edit.compo
     OrderersAddComponent,
     DialogComponent,
     FacilitiesAddComponent,
-    FacilitiesEditComponent
+    FacilitiesEditComponent,
+    TablesComponent
     // ExampleTelInputComponent,
   ],
   imports: [

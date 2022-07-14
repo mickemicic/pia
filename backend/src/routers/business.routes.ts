@@ -54,4 +54,20 @@ BusinessRouter.route('/eraseItem').post(
     (req, res)=>new BusinessController().eraseItem(req, res)
 )
 
+BusinessRouter.route('/addCategory').post(
+    (req, res)=>new BusinessController().addCategory(req, res)
+)
+
+BusinessRouter.route('/addTab').post(
+    (req, res)=>new BusinessController().addTab(req, res)
+)
+
+BusinessRouter.route('/removeTab').post(
+    (req, res)=>new BusinessController().removeTab(req, res)
+)
+
+// BusinessRouter.route('/getItems').post(
+//     (req, res)=>new BusinessController().getItems(req, res)
+// )
+
 export default BusinessRouter;
