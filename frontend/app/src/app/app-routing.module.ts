@@ -6,6 +6,7 @@ import { BusinessDataBasicComponent } from './business-data-basic/business-data-
 import { BusinessDataStorageComponent } from './business-data-storage/business-data-storage.component';
 import { BusinessNewComponent } from './business-new/business-new.component';
 import { BusinessComponent } from './business/business.component';
+import { CheckConfirmComponent } from './check-confirm/check-confirm.component';
 import { ChecksComponent } from './checks/checks.component';
 import { CustomAccControlComponent } from './custom-acc/custom-acc-control/custom-acc-control.component';
 import { CustomAccComponent } from './custom-acc/custom-acc/custom-acc.component';
@@ -41,6 +42,7 @@ const routes: Routes = [
   {path: 'facilitiesAdd', component: FacilitiesAddComponent},
   {path: 'itemEdit', component: FacilitiesEditComponent},
   {path: 'tables', component: TablesComponent},
+  {path: 'checkConfirmation', component: CheckConfirmComponent},
   {path: 'test', component: CustomAccControlComponent},
   {path: 'test2', component: CustomAccComponent}
 ];

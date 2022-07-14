@@ -1,6 +1,7 @@
 <app-header></app-header>
 <body style="text-align: center;">
     <mat-form-field>
+        <mat-label>Одаберите складиште:</mat-label>
         <mat-select [(ngModel)]="skladiste" (selectionChange)="getWItems()">
             <mat-option *ngFor="let s of skladistaId; let index = index" value="{{index}}">
                 {{s}} - {{skladistaNaz[index]}}
@@ -33,7 +34,10 @@
                     <mat-error>{{messages[index]}}</mat-error>
                 </td>
                 <td>
-                    <button mat-raised-button  color="primary" (click)="addToCheck(n, index)">Додај на рачун</button>
+                    <button mat-raised-button  color="primary" [disabled]="shows[index]" (click)="addToCheck(n, index)">Додај на рачун</button>
+                </td>
+                <td>
+                    <button mat-raised-button  color="primary" [disabled]="!shows[index]" (click)="removeFromCheck(n, index)">Уклони са рачуна</button>
                 </td>
             </tr>
         </table>
@@ -66,6 +70,11 @@
                 <td></td>
                 <td>
                     <b>{{sumPr}}</b>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="3" *ngIf="showConf">
+                    <button mat-raised-button  color="primary" (click)="racunConfirm()">Издај рачун</button>
                 </td>
             </tr>
         </table>

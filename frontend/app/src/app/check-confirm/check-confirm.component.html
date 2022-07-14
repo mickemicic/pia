@@ -1,0 +1,101 @@
+<app-header></app-header>
+<body style="text-align: center;">
+    <form class="example-form" name="forma">
+        <table class="example-full-width">
+            <tr>
+                <td colspan="2">
+                    Износ рачуна : {{sumCh}}РСД
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2">
+                    <mat-form-field>
+                        <mat-label>
+                            Одаберите начин плаћања
+                        </mat-label>
+                        <mat-select [(ngModel)]="payment" name="payment">
+                            <mat-option value="cash" name="cash">Готовина</mat-option>
+                            <mat-option value="cheque" name="cheque">Чек</mat-option>
+                            <mat-option value="card" name="card">Картица</mat-option>
+                            <mat-option value="vir" name="vir">Вирман</mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                </td>
+            </tr>
+            <tr *ngIf="payment != undefined">
+                <td *ngIf="payment == 'cash'">
+                    <mat-form-field>
+                        <mat-label>
+                            Уплаћен износ
+                        </mat-label>
+                        <input matInput type="number" [(ngModel)]="val" [required]="payment == 'cash'" name="val">
+                    </mat-form-field>
+                </td>
+                <td *ngIf="payment == 'cheque'">
+                    <mat-form-field>
+                        <mat-label>
+                            Име и презиме купца
+                        </mat-label>
+                        <input matInput type="text" [(ngModel)]="buyer" name="buyer" [required]="payment == 'cheque'">
+                    </mat-form-field>
+                </td>
+                <td *ngIf="payment == 'cash' || payment=='card' || payment=='cheque'">
+                    <mat-form-field>
+                        <mat-label>
+                            Број личне карте
+                        </mat-label>
+                        <input matInput type="number" [(ngModel)]="idNum" name="idNum" [required]="payment!='cash'" (ngModelChange)="obrada = false">
+                    </mat-form-field>
+                </td>
+                <td *ngIf="payment == 'card'">
+                    <mat-form-field>
+                        <mat-label>
+                            Број слипа
+                        </mat-label>
+                        <input matInput type="number" [(ngModel)]="slip" name="slip" [required]="payment == 'card'">
+                    </mat-form-field>
+                </td>
+                <td *ngIf="payment == 'vir'" >
+                    <mat-form-field>
+                        <mat-label>
+                            Одаберите наручиоца
+                        </mat-label>
+                        <mat-select [(ngModel)]="ord" name="ord">
+                            <mat-option *ngFor="let o of orderers; let index = index" value="{{o.id}}">
+                                {{o.title}}
+                            </mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                </td>
+            </tr>
+            <tr *ngIf="message!=''">
+                <mat-error> {{message}}</mat-error>
+            </tr>
+            <tr *ngIf="payment != undefined">
+                <td colspan="2">
+                    <button mat-raised-button (click) = "process()">
+                        Обради рачун
+                    </button>
+                </td>
+            </tr>
+            <tr *ngIf="obrada">
+                <td *ngIf="payment=='cash'" colspan="2">
+                    Кусур: {{cashBack}}РСД
+                    <br>
+                    Датум: {{today}}
+                    <br>
+                    <span *ngIf="idNum">
+                        Број личне карте: {{idNum}}
+                    </span>
+                </td>
+            </tr>
+            <tr *ngIf="obrada">
+                <td colspan="2">
+                    <button mat-raised-button color="primary" (click)="confirm()">
+                        Потврди рачун
+                    </button>
+                </td>
+            </tr>
+        </table>
+    </form>
+</body>

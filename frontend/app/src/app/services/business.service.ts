@@ -197,6 +197,17 @@ export class BusinessService {
     return this.http.post(`${this.uri}/business/removeTab`, data)
   }
 
+  confirmCh(){
+    const data={
+      user: localStorage.getItem("userN"),
+      date: localStorage.getItem("output.date"),
+      buyer: localStorage.getItem("output.buyer"),
+      sum: localStorage.getItem("output.sum"),
+      pib: localStorage.getItem("output.pib")
+    }
+    return this.http.post(`${this.uri}/business/confirmCh`,data)
+  }
+
   // getItems(user, skladiste){
   //   const data={
   //     user:user,

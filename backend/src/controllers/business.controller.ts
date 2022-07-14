@@ -1,4 +1,5 @@
 import * as express from 'express'
+import receipt from '../models/receipt';
 import business from '../models/business';
 import Business from '../models/business';
 
@@ -459,6 +460,26 @@ export class BusinessController{
         }).catch(err=>{
             res.status(400).json({'message': 'errorRemoveTab'});
         })
+    }
+
+    confirmCh = (req: express.Request, res: express.Response)=>{
+        let userDef = req.body.user;
+        let date = req.body.date;
+        let pib = req.body.pib;
+        let sum = req.body.sum;
+        let buyer = req.body.buyer;
+        
+        receipt.collection.insertOne({'date': date,
+        'pib': pib,
+        'sum': sum,
+        'buyer': buyer,
+        'title': userDef}).then(item=>{
+            res.status(200).json({'message': 'ch added'});
+        }).catch(err=>{
+            res.status(400).json({'message': 'errorAddCh'});
+        })
+
+
     }
 
 

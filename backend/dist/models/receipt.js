@@ -6,20 +6,20 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const mongoose_1 = __importDefault(require("mongoose"));
 const Schema = mongoose_1.default.Schema;
 let Receipt = new Schema({
-    business: {
+    title: {
         type: String,
     },
-    value: {
+    sum: {
         type: Number
     },
-    tax: {
-        type: Number
-    },
-    items: {
-        type: Array
-    },
-    Date: {
+    date: {
         type: Date
+    },
+    buyer: {
+        type: String
+    },
+    pib: {
+        type: Number
     }
 });
 exports.default = mongoose_1.default.model('Receipt', Receipt, 'receipts');

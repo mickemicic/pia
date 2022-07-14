@@ -3,20 +3,20 @@ import mongoose from 'mongoose'
 const Schema = mongoose.Schema;
 
 let Receipt = new Schema({
-    business:{
+    title:{
         type: String,
     },
-    value:{
+    sum:{
         type: Number
     },
-    tax:{
-        type: Number
-    },
-    items:{
-        type: Array
-    },
-    Date:{
+    date:{
         type: Date
+    },
+    buyer:{
+        type: String
+    },
+    pib:{
+        type: Number
     }
 })
 

@@ -28,6 +28,7 @@ export class ChecksComponent implements OnInit {
   constructor(private router: Router, private service: BusinessService) { }
 
   ngOnInit(): void {
+    localStorage.removeItem("check")
     this.sumPr = 0;
     if(JSON.parse(localStorage.getItem("loggedIn"))==true){
       var user = JSON.parse(localStorage.getItem("user"));
@@ -58,6 +59,8 @@ export class ChecksComponent implements OnInit {
       this.check = new Array<ItemsInt>()
       this.messages = new Array<string>()
       this.prices = new Array<number>()
+      this.showConf = false;
+      this.tableSet = false;
   }
 
   user: Business
@@ -65,6 +68,8 @@ export class ChecksComponent implements OnInit {
   skladistaNaz: Array<String>
   skladistaId: Array<String>
   skladiste: number
+
+  showConf: boolean
 
   items: Array<ItemsInt>
   show: boolean;
@@ -89,6 +94,7 @@ export class ChecksComponent implements OnInit {
     //     this.show = true;
     //   }
     // }))
+    this.shows = new Array<boolean>()
     this.user.inventory.forEach(element => {
       console.log(element)
       console.log(this.skladiste)
@@ -96,26 +102,83 @@ export class ChecksComponent implements OnInit {
       this.items.push(this.currItem)
       this.messages.push("")
       this.prices.push(0)
+      this.shows.push(false)
       console.log(this.items)
     });
   }
 
+  shows: Array<boolean>
+
+  tableSet: boolean;
+  message: string;
 
   addToCheck(element, index){
+    if(this.user.restaurant == 1){
+      if(this.tableNum == -1){
+        this.user.tables.forEach(element => {
+          if(element.taken == false && this.tableSet == false){
+            this.tableSet = true;
+            this.tableNum = element.id;
+            element.taken = true;
+          }
+        });
+        if(this.tableNum == -1){
+          this.message = "Тренутно нема слободних столова, молимо сачекајте."
+          this.router.navigate(['']);
+        }
+      }
+
+    }
     this.messages[index] = ""
-    this.showC = true;
     if(this.quant[index]==undefined || this.quant[index]<=0){
       this.messages[index] = "Морате унети валидну количину."
-      console.log(this.messages)
+      return;
     }
+    this.shows[index] = true;
+    this.showC = true;
+
     this.currItem = new ItemsInt(element.title, element.unit, element.tax, element.sellPrice);
     this.currItem.count = this.quant[index];
-    this.prices[index] = this.currItem.count* this.currItem.sellPrice;
+    this.prices[index] = this.currItem.count*this.currItem.sellPrice;
 
     this.check.push(this.currItem);
     this.sumPr+=this.prices[index]
     console.log(this.prices)
     console.log(this.sumPr)
+
+    this.showConf = true;
+  }
+
+  removeFromCheck(element, index){
+    this.shows[index] = false;
+    this.quant[index] = undefined
+    for (let i = 0; i < this.check.length; i++) {
+      if(element.title == this.check[i].title){
+        this.check.splice(i, 1)
+      }
+    }
+    this.sumPr-=this.prices[index];
+    this.prices.splice(index, 1)
+
+    if(this.check.length == 0)
+      this.showConf = false;
+  }
+
+  tableNum: number;
+
+  racunConfirm(){
+    console.log(this.check)
+    localStorage.setItem("check", JSON.stringify(this.check));
+    if(this.tableNum > -1){
+      localStorage.setItem("check.table", JSON.stringify(this.tableNum));
+      this.user.tables.forEach(element => {
+        if(element.id == this.tableNum)
+          element.taken = false;
+      });
+    }
+    this.router.navigate(['checkConfirmation'])
   }
 
 }
+
+

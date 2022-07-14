@@ -4,6 +4,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.BusinessController = exports.Inventory = void 0;
+const receipt_1 = __importDefault(require("../models/receipt"));
 const business_1 = __importDefault(require("../models/business"));
 const business_2 = __importDefault(require("../models/business"));
 class Inventory {
@@ -369,6 +370,22 @@ class BusinessController {
                 res.status(200).json({ 'message': 'tab removed' });
             }).catch(err => {
                 res.status(400).json({ 'message': 'errorRemoveTab' });
+            });
+        };
+        this.confirmCh = (req, res) => {
+            let userDef = req.body.user;
+            let date = req.body.date;
+            let pib = req.body.pib;
+            let sum = req.body.sum;
+            let buyer = req.body.buyer;
+            receipt_1.default.collection.insertOne({ 'date': date,
+                'pib': pib,
+                'sum': sum,
+                'buyer': buyer,
+                'title': userDef }).then(item => {
+                res.status(200).json({ 'message': 'ch added' });
+            }).catch(err => {
+                res.status(400).json({ 'message': 'errorAddCh' });
             });
         };
         // getItems = (req: express.Request, res: express.Response)=>{

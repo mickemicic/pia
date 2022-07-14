@@ -66,6 +66,10 @@ BusinessRouter.route('/removeTab').post(
     (req, res)=>new BusinessController().removeTab(req, res)
 )
 
+BusinessRouter.route('/confirmCh').post(
+    (req, res)=>new BusinessController().confirmCh(req, res)
+)
+
 // BusinessRouter.route('/getItems').post(
 //     (req, res)=>new BusinessController().getItems(req, res)
 // )

@@ -30,6 +30,7 @@ import { DialogComponent } from './dialog/dialog.component';
 import { FacilitiesAddComponent } from './facilities-add/facilities-add.component';
 import { FacilitiesEditComponent } from './facilities-edit/facilities-edit.component';
 import { TablesComponent } from './tables/tables.component';
+import { CheckConfirmComponent } from './check-confirm/check-confirm.component';
 // import { ExampleTelInputComponent } from './ang-custom/example-tel-input/example-tel-input.component';
 
 @NgModule({
@@ -56,7 +57,8 @@ import { TablesComponent } from './tables/tables.component';
     DialogComponent,
     FacilitiesAddComponent,
     FacilitiesEditComponent,
-    TablesComponent
+    TablesComponent,
+    CheckConfirmComponent
     // ExampleTelInputComponent,
   ],
   imports: [

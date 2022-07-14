@@ -12,6 +12,11 @@ class Orderer{
     phone: String;
 }
 
+export class Table{
+    id: number;
+    taken: boolean
+}
+
 
 export class Business{
     username: string;
@@ -34,6 +39,7 @@ export class Business{
     logo: String;
 
     restaurant: number; //0 ako nije, 1 ako jeste
+    tables: Array<Table>
 
     skladista:{
         id: Array<String>,
